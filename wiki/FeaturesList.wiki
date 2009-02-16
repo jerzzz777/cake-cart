@@ -6,9 +6,16 @@
 This page contains a list of features available in CakeCart.
 
 
-= Details =
+= Front End =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Front end features of CakeCart.
+
+==Catalog==
+
+==User Account==
+
+===Wishlist===
+
+===Order Summary===
+
+==Newsletter==
