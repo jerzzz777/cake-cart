@@ -14,7 +14,7 @@ Front end features of CakeCart.
 
 ==User Account==
 
-===Wishlist===
+====Wishlist====
 
 ===Order Summary===
 
