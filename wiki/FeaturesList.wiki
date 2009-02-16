@@ -1,5 +1,5 @@
 #labels Phase-Requirements
-#Features of CakeCart.
+Features of CakeCart.
 
 = Introduction =
 
