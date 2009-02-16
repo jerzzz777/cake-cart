@@ -1,5 +1,5 @@
+#summary Features of CakeCart.
 #labels Phase-Requirements
-_Features of CakeCart._
 
 = Introduction =
 
