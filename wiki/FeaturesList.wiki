@@ -12,6 +12,10 @@ Front end features of CakeCart.
 
 ==Catalog==
 
+  *Listing Views
+    *Grid
+    *List
+
 ==User Account==
 
 ====Wishlist====
