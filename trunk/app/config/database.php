@@ -85,7 +85,7 @@ class DATABASE_CONFIG {
 		'login' => 'root',
 		'password' => '',
 		'database' => 'cakecart',
-		'prefix' => '',
+		'prefix' => 'cc_',
 	);
 }
 ?>
