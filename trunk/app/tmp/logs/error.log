@@ -1,0 +1,7 @@
+2009-02-17 19:44:13 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'parent_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-02-17 20:53:18 Warning: Warning (2): array_combine() expects parameter 1 to be array, null given in [CORE\cake\libs\set.php, line 972]
+2009-02-17 20:53:55 Warning: Warning (2): array_combine() expects parameter 1 to be array, null given in [CORE\cake\libs\set.php, line 972]
+2009-02-17 22:44:47 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_categories\index.ctp, line 1]
+2009-02-17 22:44:52 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_categories\index.ctp, line 1]
+2009-02-17 22:45:33 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_categories\index.ctp, line 1]
+2009-02-17 23:12:07 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_categories\view.ctp, line 5]
