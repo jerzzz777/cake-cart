@@ -64,7 +64,7 @@ input, textarea, select {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -250px; /* -#px must be same as the footer/push height */
+	margin: 0 auto -200px; /* -#px must be same as the footer/push height */
 }
 
 .left-50 {
@@ -105,6 +105,8 @@ input, textarea, select {
 .breadcrumbs {
 	font-size: 12px;
 	margin-bottom: 17px;
+	padding-left: 10px;
+	border-left: 5px solid #d3dfee;
 }
 
 .column-1, .column-3 {
@@ -158,13 +160,20 @@ input, textarea, select {
 }
 
 .footer, .push {
-	height: 250px;
+	height: 200px;
 }
 
 .footer {
 	color: #ffffff;
-	background: #386296;
+	background: #386296 url(../img/footer-bg.jpg) repeat-x bottom left;
+	border-top: 10px solid #d3dfee;
 	width: 100%;
+	color: #d3dfee;
+}
+
+.footer a {
+	color: #FFFFFF;
+	text-decoration: underline;
 }
 
 .footer-container {
@@ -178,7 +187,12 @@ input, textarea, select {
 	float: left;
 }
 
-.footer-column h3 {
+.footer-column-half {
+	width: 480px;
+	float: left;
+}
+
+.footer-column-half h3, .footer-column h3 {
 	font-size: 15px;
 }
 
