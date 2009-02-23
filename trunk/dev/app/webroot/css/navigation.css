@@ -68,7 +68,7 @@ ul.sf-menu li li li.sfHover ul {
 	border-top:		none;
 	color:			#ffffff;
 }
-.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+.sf-menu a, .sf-menu a:visited, .sf-menu a:hover  { /* visited pseudo selector so IE6 applies text colour*/
 	color:			#ffffff; /* cakecart edit: original #13a; */
 }
 .sf-menu li {

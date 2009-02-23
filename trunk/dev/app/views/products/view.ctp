@@ -1,15 +1,11 @@
 <?php
 $this->pageTitle = $product['Product']['title'];
-$this->set('meta_description',$product['Product']['meta_description']);
-$this->set('meta_keywords',$product['Product']['meta_keywords']);
+if($product['Product']['meta_description'] != NULL)
+	$this->set('meta_description',$product['Product']['meta_description']);
+if($product['Product']['meta_keywords'] != NULL)
+	$this->set('meta_keywords',$product['Product']['meta_keywords']);
 $html->css('catalog-styles', null, array('media'=>'screen'), false);
 ?>
-<!--
-<?php
-print_r($rate_avg);
-print_r($product);
-?>
--->
 <h2><?php echo $product['Product']['title']; ?></h2>
 <div class="prod-image">
 	<p><a href="#"><?php echo $html->image('catalog/'.$product['ProductImage']['0']['filename']); ?></a></p>
@@ -32,7 +28,7 @@ print_r($product);
 		</table>
 		<p><a href="#reviews">3 Review(s)</a> | <a href="#">Add your review</a></p>
 		<b>Qty:</b> <?php echo $form->input('Cart.Qty', array('label'=>false, 'class'=>'prod-cart-input medium-text', 'value'=>'1', 'div'=>false)); ?>
-		<?php echo $form->button('Cart.Add', array('class'=>'medium-text', 'value'=>'Add To Cart')); ?>
+		<?php echo $form->button('Cart.Add', array('value'=>'Add To Cart')); ?>
 	</div></div></div></div></div></div></div></div></div></div>
 	<p><?php echo $product['Product']['short_description']; ?></p>
 </div>
