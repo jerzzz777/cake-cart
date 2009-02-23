@@ -14,13 +14,18 @@ class ProductCategoriesController extends AppController {
 			'fields'=>array(
 				'ProductCategory.image_filename',
 				'ProductCategory.name',
-				'ProductCategory.description'
+				'ProductCategory.description',
+				'ProductCategory.meta_keywords',
+				'ProductCategory.meta_description'
 			),
 			'contain'=>array(
 				'Product'=>array(
 					'fields'=>array(
 						'title',
-						'price'
+						'price',
+						'quantity',
+						'is_infinite_quantity',
+						'is_stocked'
 					),
 					'ProductImage'=>array(
 						'fields'=>array(
