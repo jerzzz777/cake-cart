@@ -1,0 +1,355 @@
+@charset "utf-8";
+
+/* CakeCart Global Stylesheet */
+
+/* ########## HTML ELEMENTS ########## */
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	background: #ffffff url(../img/bg.jpg) repeat-x top left;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+img {
+	border: 0px;
+	vertical-align: bottom; /* IE6 fix for 3px bottom image gap */
+}
+
+a {
+	text-decoration: none;
+	color: #0068de;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #69aaf2;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px 0px 10px 20px;
+}
+
+ul li {
+	list-style: square outside;
+}
+
+p, h1, h2, h3  {
+	padding: 0px;
+	margin: 0px 0px 10px 0px;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+input, textarea, select {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+b {
+	color: #555555;
+}
+
+/* ########## STRUCTURE ELEMENTS ########## */
+
+.container {
+	width: 960px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -200px; /* -#px must be same as the footer/push height */
+}
+
+.left-50 {
+	float: left;
+	width: 50%;
+}
+
+.header {
+	height: 108px;
+}
+
+.header h1 {
+	margin-top: 40px;
+	font-size: 20px;
+	color: #686868;
+}
+
+.welcome-message {
+	margin: 40px 0px 10px 0px;
+	text-align: right;
+}
+
+.customer-links-box {
+	color: #686868;
+	font-size: 12px;
+	text-align: right;
+}
+
+.customer-links-box a {
+	margin: 0px 5px 0px 5px;
+}
+
+.navigation {
+	height: 42px;
+	margin-bottom: 14px;
+}
+
+.breadcrumbs {
+	font-size: 12px;
+	margin-bottom: 17px;
+	padding-left: 10px;
+	border-left: 5px solid #386296;
+}
+
+.column-1, .column-3 {
+	float: left;
+	width: 195px;
+}
+
+.column-2 {
+	float: left;
+	width: 530px;
+	margin: 0px 20px 0px 20px;
+}
+
+.column-2 h2 {
+	font-size: 24px;
+	color: #555555;
+	font-weight: normal;
+	border-bottom: 3px solid #d9d9d9;
+}
+
+.content .box {
+	background: #d3dfee;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+
+.content .box input {
+	font-size: 12px;
+}
+
+.content .box ul {
+	padding: 0px 0px 0px 20px;
+}
+
+.content .box .box-top {
+	height: 28px;
+	background: url(../img/box-side-top.jpg) no-repeat bottom left;
+}
+
+.content .box .box-top h2 {
+	font-size: 15px;
+	color: #555555;
+	padding-top: 6px;
+	margin: 0px;
+	text-align: center;
+}
+
+.content .box .box-cont {
+	background: #e6f2ff;
+	margin: 0px 3px 0px 3px;
+	padding: 5px;
+}
+
+.content .box .box-bot {
+	height: 8px;
+	background: url(../img/box-side-bot.jpg) no-repeat bottom left;
+	font-size: 0px;
+}
+
+/* Start Yellow Box */
+.box-yellow {
+	background: #fffae6;
+}
+
+.box-yellow .box-border-t {
+	background: url(../img/box-border-yellow.jpg) repeat-x top;
+}
+
+.box-yellow .box-border-b {
+	background: url(../img/box-border-yellow.jpg) repeat-x bottom;
+}
+
+.box-yellow .box-border-l {
+	background: url(../img/box-border-yellow.jpg) repeat-y left;
+}
+
+.box-yellow .box-border-r {
+	background: url(../img/box-border-yellow.jpg) repeat-y right;
+}
+
+.box-yellow .box-corner-tl {
+	background: url(../img/box-corner-tl-yellow.jpg) no-repeat top left;
+}
+
+.box-yellow .box-corner-tr {
+	background: url(../img/box-corner-tr-yellow.jpg) no-repeat top right;
+}
+
+.box-yellow .box-corner-bl {
+	background: url(../img/box-corner-bl-yellow.jpg) no-repeat bottom left;
+}
+
+.box-yellow .box-corner-br {
+	background: url(../img/box-corner-br-yellow.jpg) no-repeat bottom right;
+}
+
+.box-yellow .box-mid {
+	min-height: 50px;
+	height: auto !important;
+	height: 50px;
+	padding: 10px;
+}
+/* End Yellow Box */
+
+/* Start Blue Box */
+.box-blue {
+	background: #e6f2ff;
+}
+
+.box-blue .box-border-t {
+	background: url(../img/box-border-blue.jpg) repeat-x top;
+}
+
+.box-blue .box-border-b {
+	background: url(../img/box-border-blue.jpg) repeat-x bottom;
+}
+
+.box-blue .box-border-l {
+	background: url(../img/box-border-blue.jpg) repeat-y left;
+}
+
+.box-blue .box-border-r {
+	background: url(../img/box-border-blue.jpg) repeat-y right;
+}
+
+.box-blue .box-corner-tl {
+	background: url(../img/box-corner-tl-blue.jpg) no-repeat top left;
+}
+
+.box-blue .box-corner-tr {
+	background: url(../img/box-corner-tr-blue.jpg) no-repeat top right;
+}
+
+.box-blue .box-corner-bl {
+	background: url(../img/box-corner-bl-blue.jpg) no-repeat bottom left;
+}
+
+.box-blue .box-corner-br {
+	background: url(../img/box-corner-br-blue.jpg) no-repeat bottom right;
+}
+
+.box-blue .box-mid {
+	min-height: 50px;
+	height: auto !important;
+	height: 50px;
+	padding: 10px;
+}
+/* End Blue Box */
+
+
+.footer, .push {
+	height: 200px;
+}
+
+.footer {
+	color: #ffffff;
+	background: #386296 url(../img/footer-bg.jpg) repeat-x bottom left;
+	border-top: 10px solid #d3dfee;
+	width: 100%;
+	color: #d3dfee;
+}
+
+.footer a {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+.footer-container {
+	width: 960px;
+	margin: 0px auto;
+	padding-top: 20px;
+}
+
+.footer-column {
+	width: 240px;
+	float: left;
+}
+
+.footer-column-half {
+	width: 480px;
+	float: left;
+}
+
+.footer-column-half h3, .footer-column h3 {
+	font-size: 15px;
+}
+
+/* ########## TABLE ELEMENTS ########## */
+
+.tborder {
+	background: #d3dfee;
+}
+
+table.pad-bot tr td {
+	padding: 0px 0px 10px 0px;
+}
+
+table.pad-all tr td {
+	padding: 5px;
+}
+
+/* ########## FORM ELEMENTS ########## */
+
+.input-search {
+	width: 128px;
+}
+
+.btn-search {
+	width: 40px;
+	padding: 0px;
+}
+
+/* ########## MISC ELEMENTS ########## */
+
+.clear {
+	display: block;
+	clear: both;
+}
+
+.margin-bot {
+	margin-bottom: 10px;
+}
+
+.small-text {
+	font-size: 11px;
+}
+
+.medium-text {
+	font-size: 12px;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.alt-row-1 {
+	background: #ffffff;
+}
+
+.alt-row-2 {
+	background: #e6f2ff;
+}

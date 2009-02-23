@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+/* CakeCart Catalog Stylesheet */
+
+/* ########## PRODUCTS PAGE ########## */
+
+.prod-image {
+	float: left;
+	width: 250px;
+}
+
+.prod-quick-info {
+	float: left;
+	width: 270px;
+	margin-left: 10px;
+}
+
+.prod-in-stock {
+	color: #009407;
+}
+
+.prod-out-stock {
+	color: #b60000;
+}
+
+input.prod-cart-input {
+	width: 35px;
+}
+
+.prod-add-image {
+	width: 150px;
+	float: left;
+	border: 1px solid #d9d9d9;
+	padding: 5px;
+	margin: 0px 10px 10px 0px;
+}
+
+.prod-review-box {
+	padding: 5px;
+}
