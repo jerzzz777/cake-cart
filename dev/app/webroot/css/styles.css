@@ -86,18 +86,28 @@ b {
 	color: #686868;
 }
 
-.welcome-message {
+p.welcome-message {
 	margin: 40px 0px 10px 0px;
-	text-align: right;
 }
 
-.customer-links-box {
-	color: #686868;
-	font-size: 12px;
-	text-align: right;
+.customer-links ul {
+	padding: 0px;
+	margin: 0px;
 }
 
-.customer-links-box a {
+.customer-links ul li {
+	padding: 0px 0px 0px 15px;
+	margin: 0px;
+	list-style-type: none;
+	display: inline;
+}
+
+.customer-links ul li a {
+	margin: 0px;
+	padding: 0px;
+}
+
+.customer-links a {
 	margin: 0px 5px 0px 5px;
 }
 
@@ -377,6 +387,10 @@ table.pad-all tr td {
 
 .align-center {
 	text-align: center;
+}
+
+.align-right {
+	text-align: right;
 }
 
 .alt-row-1 {
