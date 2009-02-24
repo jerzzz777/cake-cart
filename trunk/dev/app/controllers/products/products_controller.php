@@ -9,8 +9,7 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('product', $this->Product->read(null, $id));
-		$this->set('rate_avg', $this->Product->query("SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id'"));
+		$this->set('product', $this->Product->read(array("*","(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id') AS avg_rating"), $id));
 	}
 
 	function admin_index() {
