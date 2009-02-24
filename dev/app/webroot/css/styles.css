@@ -298,6 +298,39 @@ b {
 	font-size: 15px;
 }
 
+/* Pagination */
+
+.pagination {
+	margin-bottom: 20px;
+	text-align: right;
+	font-size: 12px;
+}
+
+.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin-left: 2px;
+	border: 1px solid #d3dfee;
+	text-decoration: none;
+}
+
+.pagination a:hover, .pagination a:active {
+	border: 1px solid #69aaf2;
+	color: #000000;
+}
+
+.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin-left: 2px;
+	border: 1px solid navy;
+	font-weight: bold;
+	background-color: #386296;
+	color: #FFFFFF;
+}
+
+.pagination .disabled {
+	display: none;
+}
+
 /* ########## TABLE ELEMENTS ########## */
 
 .tborder {

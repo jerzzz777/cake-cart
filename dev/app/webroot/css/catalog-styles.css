@@ -41,14 +41,39 @@ input.prod-cart-input {
 
 /* ########## PRODUCT CATEGORIES PAGE ########## */
 
-.cat-prods td {
-	padding: 20px 5px 20px 5px;
-}
-
-.cat-prods {
+.cat-list {
 	line-height: 25px;
+	margin-bottom: 20px;
 }
 
-.cat-prods td a.title {
+.cat-list li a.title {
 	text-decoration: underline;
+}
+
+.list-type-grid {
+	background: url(../img/grid3.gif) repeat top left;
+	min-height: 1px;
+	height: auto !important;
+	height: 1px;
+}
+
+.list-type-grid ol.row {
+	border-top: 1px solid #d9d9d9;
+	margin: 0px;
+	padding: 0px;
+}
+
+.list-type-grid ol.first {
+	border-top: none;
+}
+
+.list-type-grid ol.row li.item {
+	float: left;
+	width: 157px;
+	padding: 30px 10px 30px 10px;
+	overflow:hidden;
+}
+
+.list-type-grid ol.row li.last {
+	width: 156px;
 }

@@ -3,41 +3,65 @@ class ProductCategoriesController extends AppController {
 
 	var $name = 'ProductCategories';
 	var $helpers = array('Html', 'Form');
+	
+	//paginate HABTM association
+	//http://cakebaker.42dh.com/2007/10/17/pagination-of-data-from-a-habtm-relationship/
+	public $paginate = array('Product' => array(
+		'limit' => 9,
+		'recursive' => 1,
+		'joins' => array(
+			array(
+				'table' => 'product_categories_products',
+				'alias' => 'ProductCategoriesProduct',
+				'type' => 'inner',
+				'conditions'=> array('ProductCategoriesProduct.product_id = Product.id')
+			),
+			array(
+				'table' => 'product_categories',
+				'alias' => 'ProductCategory',
+				'type' => 'inner',
+				'conditions'=> array(
+					'ProductCategory.id = ProductCategoriesProduct.product_category_id'
+				)
+			)
+		),
+		'fields'=>array(
+			'Product.title',
+			'Product.price',
+			'Product.quantity',
+			'Product.is_infinite_quantity',
+			'Product.is_stocked'
+		),
+		'contain'=>array(
+			'ProductImage'=>array(
+				'fields'=>array(
+					'filename'
+				),
+				'conditions'=>array(
+					'is_featured ='=>'1'
+				)
+			)
+		),
+		'order'=>array(
+			'Product.created DESC'
+		)
+	));
+
 
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid ProductCategory.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('productCategory', $this->ProductCategory->find('first', array(
-			'recursion'=>2,
-			'fields'=>array(
+		$this->ProductCategory->recursive = -1;
+		$this->set('productCategory', $this->ProductCategory->read(array(
 				'ProductCategory.image_filename',
 				'ProductCategory.name',
 				'ProductCategory.description',
 				'ProductCategory.meta_keywords',
 				'ProductCategory.meta_description'
-			),
-			'contain'=>array(
-				'Product'=>array(
-					'fields'=>array(
-						'title',
-						'price',
-						'quantity',
-						'is_infinite_quantity',
-						'is_stocked'
-					),
-					'ProductImage'=>array(
-						'fields'=>array(
-							'filename'
-						),
-						'conditions'=>array(
-							'ProductImage.is_featured ='=>'1'
-						)
-					)
-				)
-			)
-		)));
+		), $id));
+		$this->set('product', $this->paginate('Product', array("ProductCategory.id = $id")));
 	}
 
 	function admin_index() {

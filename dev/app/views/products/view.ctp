@@ -5,6 +5,7 @@ if($product['Product']['meta_description'] != NULL)
 if($product['Product']['meta_keywords'] != NULL)
 	$this->set('meta_keywords',$product['Product']['meta_keywords']);
 $html->css('catalog-styles', null, array('media'=>'screen'), false);
+//debug($product);
 ?>
 <h2><?php echo $product['Product']['title']; ?></h2>
 <div class="prod-image">
@@ -19,11 +20,11 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 			</tr>
 			<tr>
 				<td><b>Price:</b></td>
-				<td><?php echo $product['Product']['price']; ?></td>
+				<td>$<?php echo $product['Product']['price']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Rating:</b></td>
-				<td><?php for($j = 0; $j < $rate_avg[0][0]['avg_rating']; $j++) echo '<img src="/img/star-full.png" alt="+" />'; ?><?php for($j = $j; $j < 5; $j++) echo '<img src="/img/star-blank.png" alt="-" />'; ?></td>
+				<td><?php for($j = 0; $j < $product[0]['avg_rating']; $j++) echo '<img src="/img/star-full.png" alt="+" />'; ?><?php for($j = $j; $j < 5; $j++) echo '<img src="/img/star-blank.png" alt="-" />'; ?></td>
 			</tr>
 		</table>
 		<p><a href="#reviews">3 Review(s)</a> | <a href="#">Add your review</a></p>
