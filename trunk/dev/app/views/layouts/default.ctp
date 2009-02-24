@@ -22,8 +22,8 @@ echo '
 
 <link type="image/ico" rel="Shortcut Icon" href="/favicon.ico" />
 <link type="text/css" rel="stylesheet" href="/css/cake-styles.css" media="screen" />
-<link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen" />
 <link type="text/css" rel="stylesheet" href="/css/navigation.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen" />
 
 <script type="text/javascript" language="javascript" src="/js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/superfish-1.4.8.js"></script>
@@ -48,10 +48,15 @@ echo '
 		<div class="left-50">
 			<h1>CakeCart Demo Store</h1>
 		</div>
-		<div class="left-50">
-			<div class="welcome-message">Welcome to CakeCart Demo Store, Guest!</div>
-			<div class="customer-links-box">
-				<a href="#" title="My Account">My Account</a> | <a href="#" title="My Cart">My Cart</a> | <a href="#" title="Checkout">Checkout</a> | <a href="#" title="Login">Log In</a>
+		<div class="left-50 align-right">
+			<p class="welcome-message">Welcome to CakeCart Demo Store, Guest!</p>
+			<div class="customer-links medium-text">
+				<ul>
+					<li><a href="#" title="My Account">My Account</a></li>
+					<li><a href="#" title="My Cart">My Cart</a></li>
+					<li><a href="#" title="Checkout">Checkout</a></li>
+					<li><a href="#" title="Login">Log In</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="clear"></div>
