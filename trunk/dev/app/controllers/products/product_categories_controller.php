@@ -55,12 +55,12 @@ class ProductCategoriesController extends AppController {
 		}
 		$this->ProductCategory->recursive = -1;
 		$this->set('productCategory', $this->ProductCategory->read(array(
-				'ProductCategory.id',
-				'ProductCategory.image_filename',
-				'ProductCategory.name',
-				'ProductCategory.description',
-				'ProductCategory.meta_keywords',
-				'ProductCategory.meta_description'
+			'ProductCategory.id',
+			'ProductCategory.image_filename',
+			'ProductCategory.name',
+			'ProductCategory.description',
+			'ProductCategory.meta_keywords',
+			'ProductCategory.meta_description'
 		), $id));
 		$this->set('product', $this->paginate('Product', array("ProductCategory.id = $id")));
 		

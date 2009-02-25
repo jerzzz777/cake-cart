@@ -404,3 +404,10 @@ table.pad-all tr td {
 .alt-row-2 {
 	background: #e6f2ff;
 }
+
+.hr {
+	height: 1px;
+	font-size: 0px;
+	background: #d9d9d9;
+	margin-bottom: 10px;
+}

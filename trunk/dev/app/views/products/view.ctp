@@ -17,14 +17,14 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 ?>
 <h2><?php echo $product['Product']['title']; ?></h2>
 <div class="prod-image">
-	<p><a href="#"><?php echo $html->image('catalog/'.$product['ProductImage']['0']['filename']); ?></a></p>
+	<p><a href="#" title="View Fullsize Image"><?php echo $html->image('catalog/'.$product['ProductImage'][0]['filename']); ?></a></p>
 </div>
 <div class="prod-quick-info">
 	<div class="box-yellow margin-bot"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
-		<table width="70%" cellpadding="0" cellspacing="0" class="pad-bot">
+		<table width="80%" cellpadding="0" cellspacing="0" class="pad-bot">
 			<tr>
-				<td><b>Availability:</b></td>
-				<td><?php echo (($product['Product']['quantity'] > 0) || ($product['Product']['is_infinite_quantity'] == 1)) && ($product['Product']['is_stocked'] == 1) ? '<span class="prod-in-stock">In Stock</span>' : '<span class="prod-out-stock">Out Of Stock</span>'; ?></td>
+				<td width="50%"><b>Availability:</b></td>
+				<td width="50%"><?php echo (($product['Product']['quantity'] > 0) || ($product['Product']['is_infinite_quantity'] == 1)) && ($product['Product']['is_stocked'] == 1) ? '<span class="prod-in-stock">In Stock</span>' : '<span class="prod-out-stock">Out Of Stock</span>'; ?></td>
 			</tr>
 			<tr>
 				<td><b>Price:</b></td>
@@ -32,29 +32,60 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 			</tr>
 			<tr>
 				<td><b>Rating:</b></td>
-				<td><?php for($j = 0; $j < $product[0]['avg_rating']; $j++) echo '<img src="/img/star-full.png" alt="+" />'; ?><?php for($j = $j; $j < 5; $j++) echo '<img src="/img/star-blank.png" alt="-" />'; ?></td>
+				<td>
+					<?php
+						if(isset($product['ProductReview'][0]))
+						{
+							for($j = 0; $j < $product[0]['avg_rating']; $j++)
+								echo '<img src="/img/star-full.png" alt="+" />';
+							for($j = $j; $j < 5; $j++)
+								echo '<img src="/img/star-blank.png" alt="-" />';
+						}
+						else
+						{
+							echo 'No reviews yet.';
+						}
+					?>
+				</td>
 			</tr>
 		</table>
-		<p><a href="#reviews">3 Review(s)</a> | <a href="#">Add your review</a></p>
+		<p><a href="#reviews" title="Read All Reviews"><?php echo $product[0]['cnt_review'] ?> Review(s)</a> | <a href="#" title="Add Your Review For This Product">Add your review</a></p>
+		<div class="hr"></div>
+		<?php if(isset($product['ProductOption'][0])) : ?>
+		<table width="80%" cellpadding="0" cellspacing="0" class="pad-bot">
+			<?php foreach ($product['ProductOption'] as $option) : ?>
+			<tr>
+				<td width="50%"><b><?php echo $option['title'] ?>:</b></td>
+				<td width="50%"><?php echo $form->select('Option', array('option1', 'options2')); ?></td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+		<? endif; ?>
 		<b>Qty:</b> <?php echo $form->input('Cart.Qty', array('label'=>false, 'class'=>'prod-cart-input medium-text', 'value'=>'1', 'div'=>false)); ?>
 		<?php echo $form->button('Cart.Add', array('value'=>'Add To Cart')); ?>
 	</div></div></div></div></div></div></div></div></div></div>
 	<p><?php echo $product['Product']['short_description']; ?></p>
 </div>
 <div class="clear"></div>
-<a name="images"></a>
-<h2>Additional Images</h2>
 <?php
-$i = 0;
-foreach ($product['ProductImage'] as $image) {
-	if($image['is_featured'] != 1)
-		echo '
-<div class="prod-add-image"><a href="#">'.$html->image('catalog/'.$image['filename']).'</a></div>';
+if(isset($product['ProductImage'][1]))
+{
+	echo '
+<a name="images"></a>
+<h2>Additional Images</h2>';
 
-	if(($i % 3) == 0)
-		echo '
+	$i = 0;
+	foreach ($product['ProductImage'] as $image) {
+		if($image['is_featured'] != 1)
+			echo '
+<div class="prod-add-image" title="View Fullsize Image"><a href="#">'.$html->image('catalog/'.$image['filename']).'</a></div>';
+
+		if(($i % 3) == 0)
+			echo '
 <div class="clear"></div>';
-	$i++;
+	
+		$i++;
+	}
 }
 ?>
 <div class="clear"></div>
@@ -90,13 +121,15 @@ endforeach;
 <a name="reviews"></a>
 <h2>Customer Reviews</h2>
 <?php
-$i = 0;
-foreach ($product['ProductReview'] as $review):
-if(($i % 2) == 0)
-	echo '
+if(isset($product['ProductReview'][0]))
+{
+	$i = 0;
+	foreach ($product['ProductReview'] as $review):
+		if(($i % 2) == 0)
+			echo '
 <div class="box-yellow margin-bot"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
-else
-	echo '
+		else
+			echo '
 <div class="box-blue margin-bot"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 ?>
 <p>
@@ -105,8 +138,17 @@ else
 	<?php echo $review['created']; ?>
 </p>
 <?php
-echo $review['review'].'
+		echo $review['review'].'
 </div></div></div></div></div></div></div></div></div></div>';
-$i++;
-endforeach;
+		$i++;
+	endforeach;
+
+		echo '
+<p align="right"><a href="#" title="Read All Reviews">Read All Reviews ('.$product[0]['cnt_review'].') &raquo;</a></p>';
+}
+else
+{
+echo '
+<p>No reviews yet. Be the first to <a href="#" title="Leave Your Review">leave a review</a>.</p>';
+}
 ?>
