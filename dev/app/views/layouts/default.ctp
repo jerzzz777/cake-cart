@@ -16,6 +16,7 @@ echo '
 <meta name="Description" content="'.$meta_description.'" />
 <meta name="Keywords" content="'.$meta_keywords.'" />';
 ?>
+
 <meta name="robots" content="index, follow" />
 
 <link type="image/ico" rel="Shortcut Icon" href="/favicon.ico" />
@@ -105,6 +106,7 @@ echo '
 	$session->flash();
 ?>
 <?php echo $content_for_layout; ?>
+
 <!-- ## END PAGE CONTENT ## -->
 		</div>
 		<div class="column-3">

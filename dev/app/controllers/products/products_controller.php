@@ -9,7 +9,49 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('product', $this->Product->read(array("*","(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id') AS avg_rating"), $id));
+		$this->Product->recursive = 2;
+		$this->set('product', $this->Product->find('first',
+			array(
+				'fields'=>array(
+					"(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id') AS avg_rating",
+					"(SELECT COUNT(*) AS cnt_review FROM product_reviews WHERE product_id='$id') AS cnt_review",
+					"id",
+					"title",
+					"short_description",
+					"description",
+					"sku",
+					"weight",
+					"price",
+					"special_price",
+					"special_price_from",
+					"special_price_to",
+					"is_stocked",
+					"quantity",
+					"is_infinite_quantity",
+					"meta_keywords",
+					"meta_description"
+				),
+				'contain'=>array(
+					'ProductImage'=>array(
+						'fields'=>array('filename', 'is_featured')
+					),
+					'ProductOption'=>array(
+
+					),
+					'ProductReview'=>array(
+						'fields'=>array('created', 'name', 'rating', 'review'),
+						'conditions'=>'is_active = 1',
+						'order'=>'created DESC',
+						'limit'=>3
+					),
+					'ProductAttribute'=>array(
+						'fields'=>array('title'),
+						'conditions'=>'is_active = 1'
+					)
+				)
+			),
+			$id
+		));
 		$this->set('crumbPath', $this->Product->ProductCategory->getpath($this->params['catid'], array('id', 'name')));
 	}
 
