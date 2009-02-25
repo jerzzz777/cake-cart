@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php echo $html->charset(); ?>
-
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
@@ -17,7 +16,6 @@ echo '
 <meta name="Description" content="'.$meta_description.'" />
 <meta name="Keywords" content="'.$meta_keywords.'" />';
 ?>
-
 <meta name="robots" content="index, follow" />
 
 <link type="image/ico" rel="Shortcut Icon" href="/favicon.ico" />
@@ -38,7 +36,6 @@ echo '
 </script>
 
 <?php echo $scripts_for_layout; ?>
-
 </head>
 
 <body>
@@ -62,12 +59,16 @@ echo '
 		<div class="clear"></div>
 	</div>
 	<div class="navigation">
-		<?php echo $tree->generate($productCategoryMenu['ProductCategoryMenu'], array('model'=>'ProductCategory', 'class'=>'sf-menu', 'indent'=>false, 'element'=>'product_category_menu_item')); ?>
-
+		<?php echo $tree->generate($productCategoryMenu['ProductCategoryMenu'], array('model'=>'ProductCategory', 'class'=>'sf-menu', 'element'=>'product_category_menu_item')); ?>
 	</div>
 	<div class="content">
 		<div class="breadcrumbs">
-			Home &gt; Shopping Cart
+			<?php 
+			if($html->getCrumbs())
+				echo $html->getCrumbs('<span class="sep">&gt;</span>','Home');
+			else
+				echo 'Home';
+			?>
 		</div>
 		<div class="column-1">
 			<div class="box">
@@ -99,9 +100,11 @@ echo '
 		</div>
 		<div class="column-2">
 <!-- ## START PAGE CONTENT ## -->
-<?php $session->flash(); ?>
+<?php
+	//debug($this->params);
+	$session->flash();
+?>
 <?php echo $content_for_layout; ?>
-
 <!-- ## END PAGE CONTENT ## -->
 		</div>
 		<div class="column-3">

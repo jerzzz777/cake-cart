@@ -1,10 +1,18 @@
 <?php
 $this->pageTitle = $product['Product']['title'];
+
+foreach($crumbPath as $crumb) {
+	$html->addCrumb($crumb['ProductCategory']['name'], array('controller'=>'product_categories', 'action'=>'view', 'name'=>$html->slugify($crumb['ProductCategory']['name']), 'id'=>$crumb['ProductCategory']['id']));
+}
+$html->addCrumb($product['Product']['title']);
+
 if($product['Product']['meta_description'] != NULL)
 	$this->set('meta_description',$product['Product']['meta_description']);
 if($product['Product']['meta_keywords'] != NULL)
 	$this->set('meta_keywords',$product['Product']['meta_keywords']);
+
 $html->css('catalog-styles', null, array('media'=>'screen'), false);
+
 //debug($product);
 ?>
 <h2><?php echo $product['Product']['title']; ?></h2>

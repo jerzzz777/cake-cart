@@ -4,12 +4,13 @@ class ProductsController extends AppController {
 	var $name = 'Products';
 	var $helpers = array('Html', 'Form');
 
-	function view($id = null) {
+	function view($id = null, $catid = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('product', $this->Product->read(array("*","(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id') AS avg_rating"), $id));
+		$this->set('crumbPath', $this->Product->ProductCategory->getpath($this->params['catid'], array('id', 'name')));
 	}
 
 	function admin_index() {
