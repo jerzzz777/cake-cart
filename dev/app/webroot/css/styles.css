@@ -123,6 +123,10 @@ p.welcome-message {
 	border-left: 5px solid #386296;
 }
 
+.breadcrumbs .sep {
+	padding: 0px 5px 0px 5px;
+}
+
 .column-1, .column-3 {
 	float: left;
 	width: 195px;

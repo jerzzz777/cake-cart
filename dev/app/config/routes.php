@@ -36,4 +36,29 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
+	//Categories page route (example: http://www.mydomain.com/category-name-here-id)
+	Router::connect('/:name-:id',
+		array(
+			'controller' => 'product_categories',
+			'action' => 'view'
+		),
+		array(
+			'name'=>'(.*)',
+			'id' => '[0-9]+'
+		)
+	);
+
+	//Products page route (example: http://www.mydomain.com/category-name-here-catid/product-name-here-id)
+	Router::connect('/:catname-:catid/:title-:id.html',
+		array(
+			'controller' => 'products',
+			'action' => 'view'
+		),
+		array(
+			'title'=>'(.*)',
+			'catid' => '[0-9]+',
+			'id' => '[0-9]+'
+		)
+	);
 ?>
