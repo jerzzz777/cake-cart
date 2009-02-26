@@ -364,8 +364,10 @@ table.pad-all tr td {
 /* ########## MISC ELEMENTS ########## */
 
 .clear {
-	display: block;
 	clear: both;
+	display: block;
+	font-size: 0px;
+	height: 0px;
 }
 
 .margin-bot {
