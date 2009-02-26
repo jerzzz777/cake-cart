@@ -1,16 +1,6 @@
 <?php
 App::import('Core', 'Helper');
 class AppHelper extends Helper {
-
-	/*
-	 * Fix HTML output readability by adding a new line after every <?php ?> closing tag
-	 * @param string $string
-	 * @return string
-	 */
-	function output($string) {
-		return parent::output($string . "\n");
-	}
-
 	/**
 	 * Rewrite strings to be URL/SEO friendly
 	 * (Thanks Miles Johnson, http://www.milesj.me/blog/read/15/5-custom-php-functions-strings)

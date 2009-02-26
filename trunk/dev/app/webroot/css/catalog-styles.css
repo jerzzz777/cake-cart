@@ -40,8 +40,8 @@ input.prod-cart-input {
 /* ########## PRODUCT CATEGORIES PAGE ########## */
 
 .cat-list {
-	line-height: 25px;
-	margin-bottom: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
 }
 
 .cat-list li a.title {
@@ -69,9 +69,13 @@ input.prod-cart-input {
 	float: left;
 	width: 157px;
 	padding: 30px 10px 30px 10px;
-	overflow:hidden;
+	overflow: hidden;
 }
 
 .list-type-grid ol.row li.last {
 	width: 156px;
+}
+
+.rating {
+	line-height: 17px;
 }

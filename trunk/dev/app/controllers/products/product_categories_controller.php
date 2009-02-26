@@ -26,6 +26,7 @@ class ProductCategoriesController extends AppController {
 			)
 		),
 		'fields'=>array(
+			'Product.id',
 			'Product.title',
 			'Product.price',
 			'Product.quantity',
@@ -40,7 +41,12 @@ class ProductCategoriesController extends AppController {
 				'conditions'=>array(
 					'is_featured ='=>'1'
 				)
-			)
+			),
+			'ProductReview'=>array(
+				'fields'=>array(
+					'rating'
+				)
+			),
 		),
 		'order'=>array(
 			'Product.created DESC'
@@ -54,6 +60,7 @@ class ProductCategoriesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->ProductCategory->recursive = -1;
+		
 		$this->set('productCategory', $this->ProductCategory->read(array(
 			'ProductCategory.id',
 			'ProductCategory.image_filename',
@@ -62,9 +69,10 @@ class ProductCategoriesController extends AppController {
 			'ProductCategory.meta_keywords',
 			'ProductCategory.meta_description'
 		), $id));
-		$this->set('product', $this->paginate('Product', array("ProductCategory.id = $id")));
 		
 		$this->set('crumbPath', $this->ProductCategory->getpath($id, array('id', 'name')));
+
+		$this->set('product', $this->paginate('Product', array("ProductCategory.id = $id")));
 	}
 
 	function admin_index() {

@@ -220,13 +220,6 @@ p.welcome-message {
 .box-yellow .box-corner-br {
 	background: url(../img/box-corner-br-yellow.jpg) no-repeat bottom right;
 }
-
-.box-yellow .box-mid {
-	min-height: 50px;
-	height: auto !important;
-	height: 50px;
-	padding: 10px;
-}
 /* End Yellow Box */
 
 /* Start Blue Box */
@@ -266,10 +259,10 @@ p.welcome-message {
 	background: url(../img/box-corner-br-blue.jpg) no-repeat bottom right;
 }
 
-.box-blue .box-mid {
-	min-height: 50px;
+.box-yellow .box-mid, .box-blue .box-mid {
+	min-height: 1px;
 	height: auto !important;
-	height: 50px;
+	height: 1px;
 	padding: 10px;
 }
 /* End Blue Box */
@@ -316,8 +309,6 @@ p.welcome-message {
 
 .pagination {
 	margin-bottom: 20px;
-	text-align: right;
-	font-size: 12px;
 }
 
 .pagination a {
