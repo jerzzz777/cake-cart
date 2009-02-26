@@ -35,16 +35,9 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 				<td>
 					<?php
 						if(isset($product['ProductReview'][0]))
-						{
-							for($j = 0; $j < $product[0]['avg_rating']; $j++)
-								echo '<img src="/img/star-full.png" alt="+" />';
-							for($j = $j; $j < 5; $j++)
-								echo '<img src="/img/star-blank.png" alt="-" />';
-						}
+							echo '<img src="/img/stars-'.floor($product[0]['avg_rating']).'.png" alt="'.floor($product[0]['avg_rating']).'" />';
 						else
-						{
 							echo 'No reviews yet.';
-						}
 					?>
 				</td>
 			</tr>
