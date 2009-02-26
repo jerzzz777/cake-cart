@@ -52,6 +52,7 @@ function avgRating($reviews) {
 ?>
 <h2><?php echo $productCategory['ProductCategory']['name']; ?></h2>
 <p><?php echo $productCategory['ProductCategory']['description']; ?></p>
+<?php if($paginator->hasPage()) : ?>
 <div class="box-blue"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
 	<div class="left-50 small-text">
 		Sort by: <?php echo $paginator->sort('Name', 'title', array('title'=>'Sort By Name')).', '.$paginator->sort('Price', 'price', array('title'=>'Sort By Price')); ?>
@@ -61,6 +62,7 @@ function avgRating($reviews) {
 	</div>
 	<div class="clear"></div>
 </div></div></div></div></div></div></div></div></div></div>
+<?php endif; ?>
 <div class="cat-list list-type-grid">
 <?php
 $i = 1;

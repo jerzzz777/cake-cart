@@ -25,6 +25,7 @@ echo '
 <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen" />
 
 <script type="text/javascript" language="javascript" src="/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/jquery.bgiframe.min.js"></script>
 <script type="text/javascript" language="javascript" src="/js/superfish-1.4.8.js"></script>
 <script type="text/javascript" language="javascript">
 	$(document).ready(function() {
@@ -33,7 +34,7 @@ echo '
 			animation:	{opacity:'show',height:'show'},
 			speed:		'fast'
 		});
-	});
+	}).find('ul').bgIframe({opacity:false});
 </script>
 
 <?php echo $scripts_for_layout; ?>
