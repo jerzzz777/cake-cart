@@ -187,6 +187,7 @@ p.welcome-message {
 /* Start Yellow Box */
 .box-yellow {
 	background: #fffae6;
+	margin-bottom: 10px;
 }
 
 .box-yellow .box-border-t {
@@ -225,6 +226,7 @@ p.welcome-message {
 /* Start Blue Box */
 .box-blue {
 	background: #e6f2ff;
+	margin-bottom: 10px;
 }
 
 .box-blue .box-border-t {
@@ -306,9 +308,8 @@ p.welcome-message {
 }
 
 /* Pagination */
-
 .pagination {
-	margin-bottom: 20px;
+	line-height: 20px;
 }
 
 .pagination a {
@@ -368,6 +369,10 @@ table.pad-all tr td {
 	display: block;
 	font-size: 0px;
 	height: 0px;
+	line-height: 0px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
 }
 
 .margin-bot {
@@ -399,8 +404,10 @@ table.pad-all tr td {
 }
 
 .hr {
-	height: 1px;
+	height: 0px;
+	display: block;
 	font-size: 0px;
-	background: #d9d9d9;
+	line-height: 0px;
+	border-top: 1px solid #d9d9d9;
 	margin-bottom: 10px;
 }

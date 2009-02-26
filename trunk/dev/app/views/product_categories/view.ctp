@@ -52,7 +52,7 @@ function avgRating($reviews) {
 ?>
 <h2><?php echo $productCategory['ProductCategory']['name']; ?></h2>
 <p><?php echo $productCategory['ProductCategory']['description']; ?></p>
-<div class="box-blue margin-bot"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
+<div class="box-blue"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
 	<div class="left-50 small-text">
 		Sort by: <?php echo $paginator->sort('Name', 'title', array('title'=>'Sort By Name')).', '.$paginator->sort('Price', 'price', array('title'=>'Sort By Price')); ?>
 	</div>
@@ -76,12 +76,11 @@ foreach($product as $product) {
 	echo '
 		<li class="item',($i % 3) == 0 ? ' last' : '','">
 			<div class="align-center">'.$html->link($html->image('catalog/'.$product['ProductImage'][0]['filename']), array('controller'=>'products', 'action'=>'view', 'catname'=>$html->slugify($productCategory['ProductCategory']['name']), 'catid'=>$productCategory['ProductCategory']['id'], 'title'=>$html->slugify($product['Product']['title']), 'id'=>$product['Product']['id']), array('title'=>$product['Product']['title'],'escape'=>false)).'</div>
-			<p>
-				'.$html->link($product['Product']['title'], array('controller'=>'products', 'action'=>'view', 'catname'=>$html->slugify($productCategory['ProductCategory']['name']), 'catid'=>$productCategory['ProductCategory']['id'], 'title'=>$html->slugify($product['Product']['title']), 'id'=>$product['Product']['id']), array('title'=>$product['Product']['title'], 'class'=>'title')).'<br />
-				<b>',$available ? '<span class="prod-in-stock">$'.$product['Product']['price'].'</span>' : '<span class="prod-out-stock">Out Of Stock</span>','</b><br />
-			</p>
-			<p>',$available ? $form->button('Add To Cart') : '','</p>
+			'.$html->link($product['Product']['title'], array('controller'=>'products', 'action'=>'view', 'catname'=>$html->slugify($productCategory['ProductCategory']['name']), 'catid'=>$productCategory['ProductCategory']['id'], 'title'=>$html->slugify($product['Product']['title']), 'id'=>$product['Product']['id']), array('title'=>$product['Product']['title'], 'class'=>'title')).'
 			',avgRating($product['ProductReview']) == 0 ? '' : '<div class="rating"><img src="/img/stars-'.avgRating($product['ProductReview']).'.png" alt="'.avgRating($product['ProductReview']).'" /> (<a href="#" title="Read All reviews">'.count($product['ProductReview']).'</a>)</div>','
+			<p class="list-price"><b>',$available ? '<span class="prod-in-stock">$'.$product['Product']['price'].'</span>' : '<span class="prod-out-stock">Out Of Stock</span>','</b></p>
+			<p>'.$product['Product']['short_description'].'</p>
+			<p>',$available ? $form->button('Add To Cart') : '','</p>
 		</li>';
 
 	$i++;
@@ -98,13 +97,13 @@ if(($i % 3) != 1)
 ?>
 </div>
 <?php if($paginator->hasPage()) : ?>
-<div class="pagination small-text box-blue margin-bot"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
-<div class="left-50" style="width: 20%;">
-	Page: <?php echo $paginator->counter(); ?>
-</div>
-<div class="left-50 align-right" style="width: 80%;">
-	<?php echo $paginator->prev('&laquo; Prev', array('escape'=>false), null, array('class' => 'disabled')).$paginator->numbers(array('separator'=>null)).$paginator->next('Next &raquo;', array('escape'=>false), null, array('class' => 'disabled')); ?>
-</div>
-<div class="clear"></div>
+<div class="pagination small-text box-blue"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
+	<div class="left-50" style="width: 20%;">
+		Page: <?php echo $paginator->counter(); ?>
+	</div>
+	<div class="left-50 align-right" style="width: 80%;">
+		<?php echo $paginator->prev('&laquo; Prev', array('escape'=>false), null, array('class' => 'disabled')).$paginator->numbers(array('separator'=>null)).$paginator->next('Next &raquo;', array('escape'=>false), null, array('class' => 'disabled')); ?>
+	</div>
+	<div class="clear"></div>
 </div></div></div></div></div></div></div></div></div></div>
 <?php endif; ?>

@@ -79,3 +79,7 @@ input.prod-cart-input {
 .rating {
 	line-height: 17px;
 }
+
+p.list-price {
+	margin-top: 10px;
+}
