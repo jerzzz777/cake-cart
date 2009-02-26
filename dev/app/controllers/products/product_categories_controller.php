@@ -28,6 +28,7 @@ class ProductCategoriesController extends AppController {
 		'fields'=>array(
 			'Product.id',
 			'Product.title',
+			'Product.short_description',
 			'Product.price',
 			'Product.quantity',
 			'Product.is_infinite_quantity',
