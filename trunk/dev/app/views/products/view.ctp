@@ -126,7 +126,7 @@ if(isset($product['ProductReview'][0]))
 <div class="box-blue"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 ?>
 <p>
-	<?php for($j = 0; $j < (5 - $review['rating']); $j++) echo '<img src="/img/star-blank.png" alt="-" style="float: right;" />'; ?><?php for($j = 0; $j < $review['rating']; $j++) echo '<img src="/img/star-full.png" alt="+" style="float: right;" />'; ?>
+	<img src="/img/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['rating']; ?>" style="float: right;" />
 	<b><?php echo $review['name']; ?></b><br />
 	<?php echo $review['created']; ?>
 </p>

@@ -114,6 +114,8 @@ p.welcome-message {
 .navigation {
 	height: 42px;
 	margin-bottom: 14px;
+	background: url('../img/nav-bg.jpg') repeat;
+	padding: 0px;
 }
 
 .breadcrumbs {
