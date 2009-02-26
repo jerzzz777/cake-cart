@@ -73,7 +73,7 @@ echo '
 			?>
 		</div>
 		<div class="column-1">
-			<div class="box">
+			<div class="box-titled-alt1">
 				<div class="box-top">
 					<h2>Search</h2>
 				</div>
@@ -84,7 +84,7 @@ echo '
 				</div>
 				<div class="box-bot"></div>
 			</div>
-			<div class="box">
+			<div class="box-titled-alt1">
 				<div class="box-top">
 					<h2>Information</h2>
 				</div>
@@ -111,7 +111,7 @@ echo '
 <!-- ## END PAGE CONTENT ## -->
 		</div>
 		<div class="column-3">
-			<div class="box">
+			<div class="box-titled-alt1">
 				<div class="box-top">
 					<h2>Shopping Cart</h2>
 				</div>

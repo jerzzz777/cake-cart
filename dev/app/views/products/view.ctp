@@ -20,7 +20,7 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 	<p><a href="#" title="View Fullsize Image"><?php echo $html->image('catalog/'.$product['ProductImage'][0]['filename']); ?></a></p>
 </div>
 <div class="prod-quick-info">
-	<div class="box-yellow"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
+	<div class="box-alt1"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
 		<table width="80%" cellpadding="0" cellspacing="0" class="pad-bot">
 			<tr>
 				<td width="50%"><b>Availability:</b></td>
@@ -120,10 +120,10 @@ if(isset($product['ProductReview'][0]))
 	foreach ($product['ProductReview'] as $review):
 		if(($i % 2) == 0)
 			echo '
-<div class="box-yellow"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
+<div class="box-alt1"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 		else
 			echo '
-<div class="box-blue"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
+<div class="box-alt2"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 ?>
 <p>
 	<img src="/img/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['rating']; ?>" style="float: right;" />

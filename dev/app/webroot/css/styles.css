@@ -147,26 +147,26 @@ p.welcome-message {
 	border-bottom: 3px solid #d9d9d9;
 }
 
-.content .box {
+.box-titled-alt1 {
 	background: #d3dfee;
 	margin-bottom: 20px;
 	font-size: 12px;
 }
 
-.content .box input {
+.box-titled-alt1 input {
 	font-size: 12px;
 }
 
-.content .box ul {
+.box-titled-alt1 ul {
 	padding: 0px 0px 0px 20px;
 }
 
-.content .box .box-top {
+.box-titled-alt1 .box-top {
 	height: 28px;
 	background: url(../img/box-side-top.jpg) no-repeat bottom left;
 }
 
-.content .box .box-top h2 {
+.box-titled-alt1 .box-top h2 {
 	font-size: 15px;
 	color: #555555;
 	padding-top: 6px;
@@ -174,102 +174,102 @@ p.welcome-message {
 	text-align: center;
 }
 
-.content .box .box-cont {
+.box-titled-alt1 .box-cont {
 	background: #e6f2ff;
 	margin: 0px 3px 0px 3px;
 	padding: 5px;
 }
 
-.content .box .box-bot {
+.box-titled-alt1 .box-bot {
 	height: 8px;
 	background: url(../img/box-side-bot.jpg) no-repeat bottom left;
 	font-size: 0px;
 }
 
-/* Start Yellow Box */
-.box-yellow {
+/* Start Box alt1 */
+.box-alt1 {
 	background: #fffae6;
 	margin-bottom: 10px;
 }
 
-.box-yellow .box-border-t {
+.box-alt1 .box-border-t {
 	background: url(../img/box-border-yellow.jpg) repeat-x top;
 }
 
-.box-yellow .box-border-b {
+.box-alt1 .box-border-b {
 	background: url(../img/box-border-yellow.jpg) repeat-x bottom;
 }
 
-.box-yellow .box-border-l {
+.box-alt1 .box-border-l {
 	background: url(../img/box-border-yellow.jpg) repeat-y left;
 }
 
-.box-yellow .box-border-r {
+.box-alt1 .box-border-r {
 	background: url(../img/box-border-yellow.jpg) repeat-y right;
 }
 
-.box-yellow .box-corner-tl {
+.box-alt1 .box-corner-tl {
 	background: url(../img/box-corner-tl-yellow.jpg) no-repeat top left;
 }
 
-.box-yellow .box-corner-tr {
+.box-alt1 .box-corner-tr {
 	background: url(../img/box-corner-tr-yellow.jpg) no-repeat top right;
 }
 
-.box-yellow .box-corner-bl {
+.box-alt1 .box-corner-bl {
 	background: url(../img/box-corner-bl-yellow.jpg) no-repeat bottom left;
 }
 
-.box-yellow .box-corner-br {
+.box-alt1 .box-corner-br {
 	background: url(../img/box-corner-br-yellow.jpg) no-repeat bottom right;
 }
-/* End Yellow Box */
+/* End Box alt1 */
 
-/* Start Blue Box */
-.box-blue {
+/* Start Box alt2 */
+.box-alt2 {
 	background: #e6f2ff;
 	margin-bottom: 10px;
 }
 
-.box-blue .box-border-t {
+.box-alt2 .box-border-t {
 	background: url(../img/box-border-blue.jpg) repeat-x top;
 }
 
-.box-blue .box-border-b {
+.box-alt2 .box-border-b {
 	background: url(../img/box-border-blue.jpg) repeat-x bottom;
 }
 
-.box-blue .box-border-l {
+.box-alt2 .box-border-l {
 	background: url(../img/box-border-blue.jpg) repeat-y left;
 }
 
-.box-blue .box-border-r {
+.box-alt2 .box-border-r {
 	background: url(../img/box-border-blue.jpg) repeat-y right;
 }
 
-.box-blue .box-corner-tl {
+.box-alt2 .box-corner-tl {
 	background: url(../img/box-corner-tl-blue.jpg) no-repeat top left;
 }
 
-.box-blue .box-corner-tr {
+.box-alt2 .box-corner-tr {
 	background: url(../img/box-corner-tr-blue.jpg) no-repeat top right;
 }
 
-.box-blue .box-corner-bl {
+.box-alt2 .box-corner-bl {
 	background: url(../img/box-corner-bl-blue.jpg) no-repeat bottom left;
 }
 
-.box-blue .box-corner-br {
+.box-alt2 .box-corner-br {
 	background: url(../img/box-corner-br-blue.jpg) no-repeat bottom right;
 }
 
-.box-yellow .box-mid, .box-blue .box-mid {
+.box-alt1 .box-mid, .box-alt2 .box-mid {
 	min-height: 1px;
 	height: auto !important;
 	height: 1px;
 	padding: 10px;
 }
-/* End Blue Box */
+/* End Box alt2 */
 
 
 .footer, .push {
