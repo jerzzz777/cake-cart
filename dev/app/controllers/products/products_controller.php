@@ -9,7 +9,6 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Product->recursive = 3;
 		$this->set('product', $this->Product->find('first',
 			array(
 				'fields'=>array(
