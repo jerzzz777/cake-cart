@@ -61,7 +61,7 @@ foreach($product as $product) {
 			<div class="align-center">'.$html->link($html->image('catalog/'.$product['ProductImage'][0]['filename']), array('controller'=>'products', 'action'=>'view', 'catname'=>$html->slugify($productCategory['ProductCategory']['name']), 'catid'=>$productCategory['ProductCategory']['id'], 'title'=>$html->slugify($product['Product']['title']), 'id'=>$product['Product']['id']), array('title'=>$product['Product']['title'],'escape'=>false)).'</div>
 			'.$html->link($product['Product']['title'], array('controller'=>'products', 'action'=>'view', 'catname'=>$html->slugify($productCategory['ProductCategory']['name']), 'catid'=>$productCategory['ProductCategory']['id'], 'title'=>$html->slugify($product['Product']['title']), 'id'=>$product['Product']['id']), array('title'=>$product['Product']['title'], 'class'=>'title')).'
 			',isset($product[0]['avg_rating']) ? '<div class="rating"><img src="/img/stars-'.round($product[0]['avg_rating']).'.png" alt="'.round($product[0]['avg_rating']).'" /> (<a href="#" title="Read All reviews">'.$product[0]['cnt_review'].'</a>)</div>' : '','
-			<p class="list-price"><b>',$available ? '<span class="prod-in-stock">$'.$product['Product']['price'].'</span>' : '<span class="prod-out-stock">Out Of Stock</span>','</b></p>
+			<p class="list-price"><b>',$available ? '<span class="prod-in-stock">'.$products->currencyFormat($product['Product']['price']).'</span>' : '<span class="prod-out-stock">Out Of Stock</span>','</b></p>
 			<p>'.$product['Product']['short_description'].'</p>
 			<p>',$available ? $form->button('Add To Cart') : '','</p>
 		</li>';

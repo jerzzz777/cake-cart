@@ -21,14 +21,14 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 </div>
 <div class="prod-quick-info">
 	<div class="box-alt1"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
-		<table width="80%" cellpadding="0" cellspacing="0" class="pad-bot">
+		<table width="100%" cellpadding="0" cellspacing="0" class="pad-bot">
 			<tr>
-				<td width="50%"><b>Availability:</b></td>
-				<td width="50%"><?php echo (($product['Product']['quantity'] > 0) || ($product['Product']['is_infinite_quantity'] == 1)) && ($product['Product']['is_stocked'] == 1) ? '<span class="prod-in-stock">In Stock</span>' : '<span class="prod-out-stock">Out Of Stock</span>'; ?></td>
+				<td width="40%"><b>Availability:</b></td>
+				<td width="60%"><?php echo (($product['Product']['quantity'] > 0) || ($product['Product']['is_infinite_quantity'] == 1)) && ($product['Product']['is_stocked'] == 1) ? '<span class="prod-in-stock">In Stock</span>' : '<span class="prod-out-stock">Out Of Stock</span>'; ?></td>
 			</tr>
 			<tr>
 				<td><b>Price:</b></td>
-				<td>$<?php echo $product['Product']['price']; ?></td>
+				<td><?php echo $products->currencyFormat($product['Product']['price']); ?></td>
 			</tr>
 			<tr>
 				<td><b>Rating:</b></td>
