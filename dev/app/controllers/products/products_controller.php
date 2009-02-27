@@ -2,19 +2,17 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Products');
 
 	function view($id = null, $catid = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Product->recursive = 2;
+		$this->Product->recursive = 3;
 		$this->set('product', $this->Product->find('first',
 			array(
 				'fields'=>array(
-					"(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id') AS avg_rating",
-					"(SELECT COUNT(*) AS cnt_review FROM product_reviews WHERE product_id='$id') AS cnt_review",
 					"id",
 					"title",
 					"short_description",
@@ -22,21 +20,20 @@ class ProductsController extends AppController {
 					"sku",
 					"weight",
 					"price",
-					"special_price",
-					"special_price_from",
-					"special_price_to",
 					"is_stocked",
 					"quantity",
 					"is_infinite_quantity",
 					"meta_keywords",
-					"meta_description"
+					"meta_description",
+					"(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id' AND is_active='1') AS avg_rating",
+					"(SELECT COUNT(*) AS cnt_review FROM product_reviews WHERE product_id='$id' AND is_active='1') AS cnt_review"
 				),
 				'contain'=>array(
 					'ProductImage'=>array(
 						'fields'=>array('filename', 'is_featured')
 					),
 					'ProductOption'=>array(
-
+						'ProductOptionValue'
 					),
 					'ProductReview'=>array(
 						'fields'=>array('created', 'name', 'rating', 'review'),

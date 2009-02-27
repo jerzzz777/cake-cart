@@ -2,7 +2,7 @@
 class ProductCategoriesController extends AppController {
 
 	var $name = 'ProductCategories';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Products');
 	
 	//paginate HABTM association
 	//http://cakebaker.42dh.com/2007/10/17/pagination-of-data-from-a-habtm-relationship/
@@ -32,7 +32,9 @@ class ProductCategoriesController extends AppController {
 			'Product.price',
 			'Product.quantity',
 			'Product.is_infinite_quantity',
-			'Product.is_stocked'
+			'Product.is_stocked',
+			'(SELECT AVG(`ProductReview`.`rating`) FROM `product_reviews` AS `ProductReview` WHERE `ProductReview`.`product_id` = `Product`.`id` AND `ProductReview`.`is_active` = 1) AS avg_rating',
+			'(SELECT COUNT(*) FROM `product_reviews` AS `ProductReview` WHERE `ProductReview`.`product_id` = `Product`.`id` AND `ProductReview`.`is_active` = 1) AS cnt_review'
 		),
 		'contain'=>array(
 			'ProductImage'=>array(
@@ -42,15 +44,10 @@ class ProductCategoriesController extends AppController {
 				'conditions'=>array(
 					'is_featured ='=>'1'
 				)
-			),
-			'ProductReview'=>array(
-				'fields'=>array(
-					'rating'
-				)
-			),
+			)
 		),
 		'order'=>array(
-			'Product.created DESC'
+			'Product.id ASC'
 		)
 	));
 

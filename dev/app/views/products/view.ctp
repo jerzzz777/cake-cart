@@ -35,7 +35,7 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 				<td>
 					<?php
 						if(isset($product['ProductReview'][0]))
-							echo '<img src="/img/stars-'.floor($product[0]['avg_rating']).'.png" alt="'.floor($product[0]['avg_rating']).'" />';
+							echo '<img src="/img/stars-'.round($product[0]['avg_rating']).'.png" alt="'.round($product[0]['avg_rating']).'" />';
 						else
 							echo 'No reviews yet.';
 					?>
@@ -45,11 +45,11 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 		<p><a href="#reviews" title="Read All Reviews"><?php echo $product[0]['cnt_review'] ?> Review(s)</a> | <a href="#" title="Add Your Review For This Product">Add your review</a></p>
 		<div class="hr"></div>
 		<?php if(isset($product['ProductOption'][0])) : ?>
-		<table width="80%" cellpadding="0" cellspacing="0" class="pad-bot">
+		<table width="100%" cellpadding="0" cellspacing="0" class="pad-bot prod-options">
 			<?php foreach ($product['ProductOption'] as $option) : ?>
 			<tr>
-				<td width="50%"><b><?php echo $option['title'] ?>:</b></td>
-				<td width="50%"><?php echo $form->select('Option', array('option1', 'options2')); ?></td>
+				<td width="40%"><b><?php echo $option['title'] ?>:</b></td>
+				<td width="60%"><?php echo $form->input('ProductOptionValues.id', array('options'=>$products->buildProductOptionValues($option['ProductOptionValue']), 'div'=>false, 'label'=>false)); ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

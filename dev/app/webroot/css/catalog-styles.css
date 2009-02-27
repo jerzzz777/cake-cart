@@ -37,6 +37,10 @@ input.prod-cart-input {
 	padding: 5px;
 }
 
+.prod-options select {
+	width: 100%;
+}
+
 /* ########## PRODUCT CATEGORIES PAGE ########## */
 
 .cat-list {
