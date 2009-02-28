@@ -9,45 +9,43 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid Product.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('product', $this->Product->find('first',
-			array(
-				'fields'=>array(
-					"id",
-					"title",
-					"short_description",
-					"description",
-					"sku",
-					"weight",
-					"price",
-					"is_stocked",
-					"quantity",
-					"is_infinite_quantity",
-					"meta_keywords",
-					"meta_description",
-					"(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id' AND is_active='1') AS avg_rating",
-					"(SELECT COUNT(*) AS cnt_review FROM product_reviews WHERE product_id='$id' AND is_active='1') AS cnt_review"
-				),
-				'contain'=>array(
-					'ProductImage'=>array(
-						'fields'=>array('filename', 'is_featured')
-					),
-					'ProductOption'=>array(
-						'ProductOptionValue'
-					),
-					'ProductReview'=>array(
-						'fields'=>array('created', 'name', 'rating', 'review'),
-						'conditions'=>'is_active = 1',
-						'order'=>'created DESC',
-						'limit'=>3
-					),
-					'ProductAttribute'=>array(
-						'fields'=>array('title'),
-						'conditions'=>'is_active = 1'
-					)
-				)
+		$this->set('product', $this->Product->find('first', array(
+			'fields'=>array(
+				"id",
+				"title",
+				"short_description",
+				"description",
+				"sku",
+				"weight",
+				"price",
+				"is_stocked",
+				"quantity",
+				"is_infinite_quantity",
+				"meta_keywords",
+				"meta_description",
+				"(SELECT AVG(rating) AS avg_rating FROM product_reviews WHERE product_id='$id' AND is_active='1') AS avg_rating",
+				"(SELECT COUNT(*) AS cnt_review FROM product_reviews WHERE product_id='$id' AND is_active='1') AS cnt_review"
 			),
-			$id
-		));
+			'contain'=>array(
+				'ProductImage'=>array(
+					'fields'=>array('filename', 'is_featured')
+				),
+				'ProductOption'=>array(
+					'ProductOptionValue'
+				),
+				'ProductReview'=>array(
+					'fields'=>array('created', 'name', 'rating', 'review'),
+					'conditions'=>'is_active = 1',
+					'order'=>'created DESC',
+					'limit'=>3
+				),
+				'ProductAttribute'=>array(
+					'fields'=>array('title'),
+					'conditions'=>'is_active = 1'
+				)
+			)
+		), $id));
+
 		$this->set('crumbPath', $this->Product->ProductCategory->getpath($this->params['catid'], array('id', 'name')));
 	}
 
