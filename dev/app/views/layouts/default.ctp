@@ -37,6 +37,9 @@ echo '
 	}).find('ul').bgIframe({opacity:false});
 </script>
 
+<script type="text/javascript" language="javascript" src="/js/prototype-1.6.0.3.js"></script>
+<script type="text/javascript" language="javascript" src="/js/scriptaculous.js"></script>
+
 <?php echo $scripts_for_layout; ?>
 </head>
 

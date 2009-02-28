@@ -42,7 +42,7 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 				</td>
 			</tr>
 		</table>
-		<p><a href="#reviews" title="Read All Reviews"><?php echo $product[0]['cnt_review'] ?> Review(s)</a> | <a href="#" title="Add Your Review For This Product">Add your review</a></p>
+		<p><a href="#reviews" title="Read All Reviews"><?php echo $product[0]['cnt_review'] ?> Review(s)</a> | <?php echo $html->link('Add your review', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id'], '#write'), array('title'=>'Add Your Review For This Product')); ?></p>
 		<div class="hr"></div>
 		<?php if(isset($product['ProductOption'][0])) : ?>
 		<table width="100%" cellpadding="0" cellspacing="0" class="pad-bot prod-options">
@@ -116,14 +116,19 @@ endforeach;
 <?php
 if(isset($product['ProductReview'][0]))
 {
+		echo '
+<div class="box-alt2 align-right small-text"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
+	'.$html->link('Read All Reviews ('.$product[0]['cnt_review'].') &raquo;', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id']), array('title'=>'Read All Reviews', 'escape'=>false)).'
+</div></div></div></div></div></div></div></div></div></div>';
+
 	$i = 0;
 	foreach ($product['ProductReview'] as $review):
 		if(($i % 2) == 0)
 			echo '
-<div class="box-alt1"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
+<div class="box-alt3"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 		else
 			echo '
-<div class="box-alt2"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
+<div class="box-alt1"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">';
 ?>
 <p>
 	<img src="/img/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['rating']; ?>" style="float: right;" />
@@ -136,12 +141,14 @@ if(isset($product['ProductReview'][0]))
 		$i++;
 	endforeach;
 
-	echo '
-<p align="right"><a href="#" title="Read All Reviews">Read All Reviews ('.$product[0]['cnt_review'].') &raquo;</a></p>';
+		echo '
+<div class="box-alt2 align-right small-text"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
+	'.$html->link('Read All Reviews ('.$product[0]['cnt_review'].') &raquo;', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id']), array('title'=>'Read All Reviews', 'escape'=>false)).'
+</div></div></div></div></div></div></div></div></div></div>';
 }
 else
 {
 	echo '
-<p>No reviews yet. Be the first to <a href="#" title="Leave Your Review">leave a review</a>.</p>';
+<p>No reviews yet. Be the first to '.$html->link('leave a review', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id'], '#write'), array('title'=>'Leave Your Review')).'.</p>';
 }
 ?>
