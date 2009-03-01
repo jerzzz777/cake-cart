@@ -33,7 +33,9 @@ $paginator->options(
 ?>
 <h2><?php echo $productCategory['ProductCategory']['name']; ?></h2>
 <p><?php echo $productCategory['ProductCategory']['description']; ?></p>
-<?php if($paginator->hasPage()) : ?>
+<?php if($product[0] == null): ?>
+<p>No products to display.</p>
+<?php else: ?>
 <div class="box-alt2"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
 	<div class="left-50 small-text">
 		Sort by: <?php echo $paginator->sort('Name', 'title', array('title'=>'Sort By Name')).', '.$paginator->sort('Price', 'price', array('title'=>'Sort By Price')); ?>
@@ -43,7 +45,6 @@ $paginator->options(
 	</div>
 	<div class="clear"></div>
 </div></div></div></div></div></div></div></div></div></div>
-<?php endif; ?>
 <div class="cat-list list-type-grid">
 <?php
 $i = 1;
@@ -75,7 +76,6 @@ if(($i % 3) != 1)
 	<div class="clear"></div>';
 ?>
 </div>
-<?php if($paginator->hasPage()) : ?>
 <div class="pagination small-text box-alt2"><div class="box-border-t"><div class="box-border-b"><div class="box-border-l"><div class="box-border-r"><div class="box-corner-tl"><div class="box-corner-tr"><div class="box-corner-bl"><div class="box-corner-br"><div class="box-mid">
 	<div class="left-50" style="width: 20%;">
 		Page: <?php echo $paginator->counter(); ?>
