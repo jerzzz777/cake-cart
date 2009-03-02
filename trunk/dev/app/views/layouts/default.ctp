@@ -20,11 +20,16 @@ echo '
 <meta name="robots" content="index, follow" />
 
 <link type="image/ico" rel="Shortcut Icon" href="/favicon.ico" />
+
 <link type="text/css" rel="stylesheet" href="/css/cake-styles.css" media="screen" />
-<link type="text/css" rel="stylesheet" href="/css/navigation.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="/css/dropdown/dropdown.css" media="all" />
+<link type="text/css" rel="stylesheet" href="/css/dropdown/themes/cake-cart/default.css" media="all" />
 <link type="text/css" rel="stylesheet" href="/css/styles.css" media="screen" />
 
-<script type="text/javascript" language="javascript" src="/js/prototaculous.min.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery-1.3.2.min.js"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/jquery/plugins/jquery.dropdown.js"></script>
+<![endif]-->
 
 <?php echo $scripts_for_layout; ?>
 </head>
@@ -50,7 +55,7 @@ echo '
 		<div class="clear"></div>
 	</div>
 	<div class="navigation">
-		<?php echo $tree->generate($productCategoryMenu['ProductCategoryMenu'], array('model'=>'ProductCategory', 'class'=>'sf-menu', 'element'=>'product_category_menu_item')); ?>
+		<?php echo $tree->generate($productCategoryMenu['ProductCategoryMenu'], array('model'=>'ProductCategory', 'id'=>'nav', 'class'=>'dropdown', 'element'=>'product_category_menu_item')); ?>
 	</div>
 	<div class="content">
 		<div class="breadcrumbs">

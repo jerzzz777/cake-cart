@@ -102,8 +102,8 @@ $paginator->options(
 <a name="write"></a>
 <h2>Write Your Review</h2>
 <div id="write-review">
-<div id="ajax-loading" style="display: none;">Submitting your review. Please wait...</div>
-<?php echo $ajax->form('add','post',array('model'=>'ProductReview', 'update'=>'write-review', 'indicator'=>'ajax-loading')); ?>
+<div id="ajax-loading" style="display: none;">Submajax->formitting your review. Please wait...</div>
+<?php echo $form->create(); ?>
 <?php  echo $form->input('product_id', array('type'=>'hidden', 'value'=>$product['Product']['id'])); ?>
 <?php  echo $form->input('name'); ?>
 How do you rate this product?

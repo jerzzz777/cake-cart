@@ -122,6 +122,10 @@ p.welcome-message {
 	padding: 0px;
 }
 
+.navigation a, .navigation a:hover {
+	color: #ffffff;
+}
+
 .breadcrumbs {
 	font-size: 12px;
 	margin-bottom: 17px;
