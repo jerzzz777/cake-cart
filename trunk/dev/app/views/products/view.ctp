@@ -42,14 +42,14 @@ $html->css('catalog-styles', null, array('media'=>'screen'), false);
 				</td>
 			</tr>
 		</table>
-		<p><a href="#reviews" title="Read All Reviews"><?php echo $product[0]['cnt_review'] ?> Review(s)</a> | <?php echo $html->link('Add your review', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id'], '#write'), array('title'=>'Add Your Review For This Product')); ?></p>
+		<p><?php echo $html->link($product[0]['cnt_review'].' Review(s)', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id']), array('title'=>'Read All Reviews')); ?> | <?php echo $html->link('Add your review', array('controller'=>'product_reviews', 'action'=>'view', $product['Product']['id'], $crumb['ProductCategory']['id'], '#write'), array('title'=>'Add Your Review For This Product')); ?></p>
 		<div class="hr"></div>
 		<?php if(isset($product['ProductOption'][0])) : ?>
 		<table width="100%" cellpadding="0" cellspacing="0" class="pad-bot prod-options">
 			<?php foreach ($product['ProductOption'] as $option) : ?>
 			<tr>
 				<td width="40%"><b><?php echo $option['title'] ?>:</b></td>
-				<td width="60%"><?php echo $form->input('ProductOptionValues.id', array('options'=>$products->buildProductOptionValues($option['ProductOptionValue']), 'div'=>false, 'label'=>false)); ?></td>
+				<td width="60%"><?php echo $form->input('ProductOptionValues.id', array('options'=>$products->buildProductOptionValues($option['ProductOptionValue']), 'div'=>false, 'label'=>false, 'id'=>'ProductOption'.$option['id'])); ?></td>
 			</tr>
 			<?php endforeach; ?>
 		</table>

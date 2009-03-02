@@ -37,7 +37,7 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
-	//Products page route (example: http://www.mydomain.com/category-name-here-catid/product-name-here-id)
+	//Products page route (example: http://www.mydomain.com/category-name-catid/product-title-id.html)
 	Router::connect('/:catname-:catid/:title-:id.html',
 		array(
 			'controller' => 'products',
@@ -50,7 +50,7 @@
 		)
 	);
 
-	//Categories page route (example: http://www.mydomain.com/category-name-here-id)
+	//Categories page route (example: http://www.mydomain.com/category-name-id)
 	Router::connect('/:name-:id/*',
 		array(
 			'controller' => 'product_categories',

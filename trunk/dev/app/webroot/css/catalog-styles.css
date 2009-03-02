@@ -48,9 +48,11 @@ input.prod-cart-input {
 	margin-bottom: 10px;
 }
 
-.cat-list li a.title {
+.cat-list a.title {
 	text-decoration: underline;
 }
+
+/* grid */
 
 .list-type-grid {
 	background: url(../img/grid3.gif) repeat top left;
@@ -78,6 +80,30 @@ input.prod-cart-input {
 
 .list-type-grid ol.row li.last {
 	width: 156px;
+}
+
+/* list */
+
+.list-type-list .item {
+	border-top: 1px solid #d9d9d9;
+	padding: 10px 0px 10px 0px;
+	min-height: 1px;
+	height: auto !important;
+	height: 1px;
+}
+
+.list-type-list .item-first {
+	border-top: none;
+}
+
+.list-type-list .item-picture {
+	width: 34%;
+	float: left;
+}
+
+.list-type-list .item-info {
+	width: 65%;
+	float: left;
 }
 
 .rating {
