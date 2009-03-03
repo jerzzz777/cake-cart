@@ -42,13 +42,13 @@ echo '
 			<h1>CakeCart Demo Store</h1>
 		</div>
 		<div class="left-50 align-right">
-			<p class="welcome-message">Welcome to CakeCart Demo Store, Guest!</p>
+			<p class="welcome-message"><?php echo isset($customer) ? 'Welcome, '.$customer['Customer']['firstname'] : 'Welcome to CakeCart Demo Store, Guest!'; ?></p>
 			<div class="customer-links medium-text">
 				<ul>
-					<li><a href="#" title="My Account">My Account</a></li>
+					<li><?php echo isset($customer) ? $html->link('My Account', array('controller'=>'dashboard', 'action'=>'index')) : $html->link('Register', array('controller'=>'customers', 'action'=>'register')); ?></li>
 					<li><a href="#" title="My Cart">My Cart</a></li>
 					<li><a href="#" title="Checkout">Checkout</a></li>
-					<li><a href="#" title="Login">Log In</a></li>
+					<li><?php echo isset($customer) ? $html->link('Log Out', array('controller'=>'customers', 'action'=>'logout')) : $html->link('Log In', array('controller'=>'customers', 'action'=>'login')); ?></li>
 				</ul>
 			</div>
 		</div>
