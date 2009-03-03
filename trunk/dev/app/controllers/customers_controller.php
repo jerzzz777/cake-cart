@@ -6,9 +6,6 @@ class CustomersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 
-		// Does not require being logged in
-		$this->Auth->allow('register');
-
 		// If logged in, these pages require logout
 		if ($this->Auth->user() && in_array($this->params['action'], array('register', 'login'))) {
 			$this->redirect('/');
