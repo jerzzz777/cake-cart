@@ -1,4 +1,7 @@
 /* Tables */
+.cake-sql-log caption {
+	margin-top: 20px;
+}
 table.cake-sql-log {
 	background: #fff;
 	border:1px solid #ccc;
