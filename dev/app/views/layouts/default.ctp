@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
-<title><?php echo $title_for_layout; ?> | CakeCart Demo Store</title>
+<title><?php echo $title_for_layout; ?> | <?php echo Configure::read('site_name'); ?></title>
 <?php
 if(!isset($meta_description))
-	$meta_description = "Yourwebsite.com sells all kinds of cool gear.";
+	$meta_description = Configure::read('site_name')." sells all kinds of cool gear.";
 if(!isset($meta_keywords))
 	$meta_keywords = "cake, shopping, cart, free, php, mysql, ecommerce, e-commerce";
 
@@ -39,7 +39,7 @@ echo '
 <div class="container">
 	<div class="header">
 		<div class="left-50">
-			<h1>CakeCart Demo Store</h1>
+			<h1><?php echo Configure::read('site_name'); ?></h1>
 		</div>
 		<div class="left-50 align-right">
 			<p class="welcome-message"><?php echo isset($customer) ? 'Welcome, '.$customer['Customer']['firstname'] : 'Welcome to CakeCart Demo Store, Guest!'; ?></p>
@@ -122,8 +122,8 @@ echo '
 <div class="footer">
 	<div class="footer-container">
 		<div class="footer-column-half">
-			<p>&copy; Copyright 2009, CakeCart Demo Store.</p>
-			<p>Powered by <a href="http://www.cakecart.org" target="_blank" title="Free eCommerce Shopping Cart">CakeCart 1.0</a>.</p>
+			<p>&copy; Copyright 2009, <?php echo Configure::read('site_name'); ?>.</p>
+			<p>Powered by <a href="http://www.cakecart.org" target="_blank" title="Free eCommerce Shopping Cart">CakeCart <?php echo Configure::read('version'); ?></a>.</p>
 		</div>
 		<div class="footer-column">
 			<h3>Sitemap</h3>
