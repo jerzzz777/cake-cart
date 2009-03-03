@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+/* CakeCart Admin Stylesheet */
+
+/* ########## HTML ELEMENTS ########## */
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	background: #ffffff;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+img {
+	border: 0px;
+	vertical-align: bottom; /* IE6 fix for 3px bottom image gap */
+}
+
+a {
+	text-decoration: none;
+	color: #0068de;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #69aaf2;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px 0px 10px 20px;
+}
+
+ul li {
+	list-style: square outside;
+}
+
+p, h1, h2, h3  {
+	padding: 0px;
+	margin: 0px 0px 10px 0px;
+}
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+input, textarea, select {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+textarea {
+	width: 98%;
+}
+
+/* ########## STRUCTURE ELEMENTS ########## */
+
+.container {
+	width: 960px;
+	margin: 0px auto;
+	background: #cccccc;
+}
+
+.left-50 {
+	float: left;
+	width: 50%;
+}
+
+.header {
+	height: 100px;
+}
+
+.navigation {
+	height: 40px;
+}
+
+.content .column1 {
+	width: 20%;
+	float: left;
+}
+
+.content .column2 {
+	width: 80%;
+	float: left;
+}
+
+.footer {
+	height: 50px;
+}
+
+/* ########## MISC ELEMENTS ########## */
+
+.clear {
+	clear: both;
+	display: block;
+	font-size: 0px;
+	height: 0px;
+	line-height: 0px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+.margin-bot {
+	margin-bottom: 10px;
+}
+
+.small-text {
+	font-size: 11px;
+}
+
+.medium-text {
+	font-size: 12px;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}

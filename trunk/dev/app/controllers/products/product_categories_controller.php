@@ -74,11 +74,13 @@ class ProductCategoriesController extends AppController {
 	}
 
 	function admin_index() {
+		$this->layout = 'admin';
 		$this->ProductCategory->recursive = 0;
 		$this->set('productCategories', $this->paginate());
 	}
 
 	function admin_view($id = null) {
+		$this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid ProductCategory.', true));
 			$this->redirect(array('action'=>'index'));
@@ -87,6 +89,7 @@ class ProductCategoriesController extends AppController {
 	}
 
 	function admin_add() {
+		$this->layout = 'admin';
 		if (!empty($this->data)) {
 			$this->ProductCategory->create();
 			if ($this->ProductCategory->save($this->data)) {
@@ -101,6 +104,7 @@ class ProductCategoriesController extends AppController {
 	}
 
 	function admin_edit($id = null) {
+		$this->layout = 'admin';
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid ProductCategory', true));
 			$this->redirect(array('action'=>'index'));
@@ -121,6 +125,7 @@ class ProductCategoriesController extends AppController {
 	}
 
 	function admin_delete($id = null) {
+		$this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for ProductCategory', true));
 			$this->redirect(array('action'=>'index'));
