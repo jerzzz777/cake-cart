@@ -1,4 +1,4 @@
-#summary Setting up your catalog. Categories, Attributes, Products, etc.
+#summary Setting up your catalog. Categories, Attributes, Products, Stock Management, Batch Updating.
 #labels Phase-Deploy
 
 = Introduction =
