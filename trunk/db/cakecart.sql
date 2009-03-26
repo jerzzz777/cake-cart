@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 28, 2009 at 12:55 AM
+-- Generation Time: Mar 26, 2009 at 12:17 AM
 -- Server version: 5.1.30
 -- PHP Version: 5.2.8
 
@@ -18,6 +18,29 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `cakecart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `configurations`
+--
+
+CREATE TABLE IF NOT EXISTS `configurations` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `configurations`
+--
+
+INSERT INTO `configurations` (`id`, `name`, `value`) VALUES
+(1, 'site_name', 'CakeCart Demo Store'),
+(2, 'currency', 'USD'),
+(3, 'currency_symbol', '$'),
+(4, 'version', '1.0.0');
 
 -- --------------------------------------------------------
 
@@ -68,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 INSERT INTO `customers` (`id`, `created`, `modified`, `firstname`, `lastname`, `email`, `phone`, `password`, `ip`, `is_newsletter`, `is_active`) VALUES
-(1, '2009-02-20 20:38:17', '2009-02-20 20:38:20', 'Kyle', 'Spearrin', 'kyle@websolvents.com', '9048604263', '123456', '111.111.11.11', 1, 1);
+(1, '2009-02-20 20:38:17', '2009-02-20 20:38:20', 'Kyle', 'Spearrin', 'kyle@websolvents.com', '9048604263', 'd1c2f711ad16b13f4bd6713c7c4d4013', '111.111.11.11', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -217,18 +240,18 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
 --
 
 INSERT INTO `product_categories` (`id`, `parent_id`, `lft`, `rght`, `image_filename`, `name`, `description`, `meta_keywords`, `meta_description`, `is_active`) VALUES
-(6, NULL, 9, 10, '', 'Hard Drives', 'Big hard drives.', 'hard, drives', 'these are some hard drives.', 1),
-(4, NULL, 1, 8, '', 'Computers', 'Here are some computers.', NULL, NULL, 1),
-(5, 4, 2, 5, 'cc-logo.jpg', 'Laptops', 'Laptops.', NULL, NULL, 1),
-(7, 4, 6, 7, '', 'PC''s', 'these are the pc''s', NULL, NULL, 1),
-(8, NULL, 11, 12, '', 'Processors', 'Fast processors!', NULL, NULL, 1),
+(6, NULL, 17, 18, '', 'Hard Drives', 'Big hard drives.', 'hard, drives', 'these are some hard drives.', 1),
+(4, NULL, 1, 16, '', 'Computers', 'Here are some computers.', NULL, NULL, 1),
+(5, 4, 2, 13, 'cc-logo.jpg', 'Laptops', 'Laptops.', NULL, NULL, 1),
+(7, 4, 14, 15, '', 'PC''s', 'these are the pc''s', NULL, NULL, 1),
+(8, NULL, 19, 20, '', 'Processors', 'Fast processors!', NULL, NULL, 1),
 (9, 5, 3, 4, '', 'Dell''s', 'Dell laptops', NULL, NULL, 1),
-(10, NULL, 13, 14, '', 'Testing', '', NULL, NULL, 1),
-(11, NULL, 15, 16, '', 'test2', '', NULL, NULL, 1),
-(12, NULL, 17, 18, '', 'another cat', '', NULL, NULL, 1),
-(13, NULL, 19, 20, '', 'and another', '', NULL, NULL, 1),
-(14, NULL, 21, 22, '', 'yep another', '', NULL, NULL, 1),
-(19, NULL, 23, 24, '', 'testing1', '', NULL, NULL, 1);
+(10, NULL, 21, 22, '', 'Testing', '', NULL, NULL, 1),
+(11, 12, 6, 7, '', 'test2', '', NULL, NULL, 1),
+(12, 5, 5, 8, '', 'another cat', '', NULL, NULL, 1),
+(13, NULL, 23, 24, '', 'and another', '', NULL, NULL, 1),
+(14, 5, 9, 10, '', 'yep another', '', NULL, NULL, 1),
+(19, 5, 11, 12, '', 'testing1', '', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -241,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `product_categories_products` (
   `product_id` int(11) unsigned NOT NULL,
   `product_category_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED AUTO_INCREMENT=38 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `product_categories_products`
@@ -266,7 +289,7 @@ INSERT INTO `product_categories_products` (`id`, `product_id`, `product_category
 (32, 14, 7),
 (33, 15, 7),
 (34, 16, 7),
-(37, 14, 19);
+(38, 14, 19);
 
 -- --------------------------------------------------------
 
@@ -431,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `product_reviews` (
   `review` text NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=50 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `product_reviews`
@@ -486,7 +509,13 @@ INSERT INTO `product_reviews` (`id`, `product_id`, `created`, `name`, `rating`, 
 (46, 1, '2009-02-28 00:40:41', 'asdfasdf', 5, 'asdfasdf', 0),
 (47, 1, '2009-02-28 00:42:37', 'sdfgsdfg', 3, 'sdfgsdfgsdfg', 0),
 (48, 1, '2009-02-28 00:51:15', 'afasdfhasdlkfj', 4, 'asdfasdfasdf', 0),
-(49, 1, '2009-02-28 00:51:42', 'Mark', 2, 'asdfasdf mark is gay', 0);
+(49, 1, '2009-02-28 00:51:42', 'Mark', 2, 'asdfasdf mark is gay', 0),
+(50, 1, '2009-02-28 00:57:02', 'xcvzxcvzxcv', 3, 'xcvzxcvxcv', 0),
+(51, 1, '2009-02-28 00:57:45', 'sdfasdf', 5, 'asdffffffffffffffffffffffffff', 0),
+(52, 1, '2009-02-28 21:29:00', 'dasfsdfasdf', 1, 'asdfasdf', 0),
+(53, 1, '2009-02-28 21:39:57', 'ghghhhhhhhh', 1, 'hhh', 0),
+(54, 1, '2009-03-01 15:59:21', 'Kyle S', 1, 'This thing sucks.', 0),
+(55, 1, '2009-03-01 21:56:55', 'sdfaasdfasdf', 1, 'asdfasdf', 0);
 
 -- --------------------------------------------------------
 
@@ -575,3 +604,21 @@ CREATE TABLE IF NOT EXISTS `tax_rates` (
 
 INSERT INTO `tax_rates` (`id`, `country_id`, `region_id`, `title`, `rate`, `zip`) VALUES
 (1, 1, 1, 'Florida Tax', 7.0000, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) unsigned NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
