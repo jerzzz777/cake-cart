@@ -43,7 +43,7 @@ ul.dropdown ul li {
 
 ul.dropdown ul ul {
  top: 10px;
- left: 95%;
+ left: 80%;
 }
 
 ul.dropdown li:hover > ul {
