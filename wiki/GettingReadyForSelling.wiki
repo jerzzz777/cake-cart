@@ -1,0 +1,25 @@
+#summary Getting ready for selling. Checkout, Localization, Taxes, Shipping, Payment Options.
+#labels Phase-Deploy
+
+= Introduction =
+
+Add your content here.
+
+
+= Checkout =
+
+
+
+= Localization =
+
+
+
+= Taxes =
+
+
+
+= Shipping =
+
+
+
+= Payment Options =
