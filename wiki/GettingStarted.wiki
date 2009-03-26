@@ -1,4 +1,4 @@
-#summary System Requirements, Downloading, and Installing.
+#summary Getting started. System Requirements, Downloading, and Installing.
 #labels Phase-Deploy
 
 = Introduction =
