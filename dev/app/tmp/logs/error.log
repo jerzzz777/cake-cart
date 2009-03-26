@@ -304,3 +304,4 @@
 2009-02-27 23:18:17 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_reviews\view.ctp, line 4]
 2009-02-27 23:56:24 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product_reviews\view.ctp, line 4]
 2009-02-28 00:06:55 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'rating' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-03-26 01:15:47 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'rating' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]

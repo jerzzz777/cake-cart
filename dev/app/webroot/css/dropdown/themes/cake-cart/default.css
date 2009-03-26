@@ -22,7 +22,18 @@ ul.dropdown li {
 
 ul.dropdown li.hover,
 ul.dropdown li:hover {
-	background-image: url(../../../../img/nav-bg-hover.jpg);
+	background: #386296;
+}
+
+ul.dropdown li li {
+	background: #f6f6f6;
+	border-bottom: 1px solid #d9d9d9;
+	border-top: 1px solid #ffffff;
+}
+
+ul.dropdown li li.hover,
+ul.dropdown li li:hover {
+	background: #ffffff;
 }
 
 ul.dropdown a,
@@ -33,8 +44,13 @@ ul.dropdown span {
 
 ul.dropdown ul a,
 ul.dropdown ul span {
+	color: #0068de;
 	display: block;
-	padding: 12px 20px 11px 20px;
+	padding: 10px 20px 10px 20px;
+}
+
+ul.dropdown ul a:hover {
+	color: #0068de;
 }
 
 
@@ -42,7 +58,8 @@ ul.dropdown ul span {
 
 ul.dropdown ul {
 	width: 250px;
-	border: 1px solid #ffffff;
+	border: 1px solid #d9d9d9;
+	border-bottom: none;
 }
 
 
