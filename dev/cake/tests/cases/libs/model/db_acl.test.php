@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: db_acl.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: db_acl.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * DbAclTest file
  *
  * Long description for file
  *
@@ -16,27 +16,25 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components.dbacl.models
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
 }
-
 App::import('Component', 'Acl');
 App::import('Core', 'db_acl');
-
 /**
-* DB ACL wrapper test class
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * DB ACL wrapper test class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAclNodeTestBase extends AclNode {
 /**
  * useDbConfig property
@@ -53,13 +51,12 @@ class DbAclNodeTestBase extends AclNode {
  */
 	var $cacheSources = false;
 }
-
 /**
-* Aro Test Wrapper
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * Aro Test Wrapper
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAroTest extends DbAclNodeTestBase {
 /**
  * name property
@@ -83,13 +80,12 @@ class DbAroTest extends DbAclNodeTestBase {
  */
 	var $hasAndBelongsToMany = array('DbAcoTest' => array('with' => 'DbPermissionTest'));
 }
-
 /**
-* Aco Test Wrapper
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * Aco Test Wrapper
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAcoTest extends DbAclNodeTestBase {
 /**
  * name property
@@ -113,13 +109,12 @@ class DbAcoTest extends DbAclNodeTestBase {
  */
 	var $hasAndBelongsToMany = array('DbAroTest' => array('with' => 'DbPermissionTest'));
 }
-
 /**
-* Permission Test Wrapper
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * Permission Test Wrapper
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbPermissionTest extends CakeTestModel {
 /**
  * name property
@@ -151,11 +146,11 @@ class DbPermissionTest extends CakeTestModel {
 	var $belongsTo = array('DbAroTest' => array('foreignKey' => 'aro_id'), 'DbAcoTest' => array('foreignKey' => 'aco_id'));
 }
 /**
-* Short description for class.
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * DboActionTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAcoActionTest extends CakeTestModel {
 /**
  * name property
@@ -180,11 +175,11 @@ class DbAcoActionTest extends CakeTestModel {
 	var $belongsTo = array('DbAcoTest' => array('foreignKey' => 'aco_id'));
 }
 /**
-* Short description for class.
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * DbAroUserTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAroUserTest extends CakeTestModel {
 /**
  * name property
@@ -215,13 +210,12 @@ class DbAroUserTest extends CakeTestModel {
 		}
 	}
 }
-
 /**
-* Short description for class.
-*
-* @package       cake.tests
-* @subpackage    cake.tests.cases.libs.controller.components
-*/
+ * DbAclTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.controller.components
+ */
 class DbAclTest extends DbAcl {
 /**
  * construct method
@@ -237,9 +231,9 @@ class DbAclTest extends DbAcl {
 	}
 }
 /**
- * Short description for class.
+ * AclNodeTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components.dbacl.models
  */
 class AclNodeTest extends CakeTestCase {

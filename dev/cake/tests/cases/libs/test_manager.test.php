@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: test_manager.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: test_manager.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * TestManagerTest file
  *
  * Long description for file
  *
@@ -16,20 +16,26 @@
  *  Redistributions of files must retain the above copyright notice.
  *
  * @filesource
- * @copyright		Copyright 2005-2008, Cake Software Foundation, Inc.
- * @link				https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package			cake.tests
- * @subpackage		cake.tests.cases.libs
- * @since			CakePHP(tm) v 1.2.0.4206
- * @version			$Revision: 7945 $
- * @modifiedby		$LastChangedBy: gwoo $
- * @lastmodified	$Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
- * @license			http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
+ * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs
+ * @since         CakePHP(tm) v 1.2.0.4206
+ * @version       $Revision: 8120 $
+ * @modifiedby    $LastChangedBy: gwoo $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
+ * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'TestManager');
+/**
+ * TestManagerTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs
+ */
 class TestManagerTest extends CakeTestCase {
 /**
- * undocumented function
+ * setUp method
  *
  * @return void
  * @access public
@@ -39,7 +45,7 @@ class TestManagerTest extends CakeTestCase {
 		$this->Reporter =& new CakeHtmlReporter();
 	}
 /**
- * undocumented function
+ * testRunAllTests method
  *
  * @return void
  * @access public
@@ -55,7 +61,7 @@ class TestManagerTest extends CakeTestCase {
 		$this->assertEqual(count($out), count($list));
 	}
 /**
- * undocumented function
+ * testRunTestCase method
  *
  * @return void
  * @access public
@@ -71,49 +77,44 @@ class TestManagerTest extends CakeTestCase {
 		$this->assertTrue($result);
 	}
 /**
- * undocumented function
+ * testRunGroupTest method
  *
  * @return void
  * @access public
  */
 	function testRunGroupTest() {
-
 	}
 /**
- * undocumented function
+ * testAddTestCasesFromDirectory method
  *
  * @return void
  * @access public
  */
 	function testAddTestCasesFromDirectory() {
-
 	}
 /**
- * undocumented function
+ * testAddTestFile method
  *
  * @return void
  * @access public
  */
 	function testAddTestFile() {
-
 	}
 /**
- * undocumented function
+ * testGetTestCaseList method
  *
  * @return void
  * @access public
  */
 	function testGetTestCaseList() {
-
 	}
 /**
- * undocumented function
+ * testGetGroupTestList method
  *
  * @return void
  * @access public
  */
 	function testGetGroupTestList() {
-
 	}
 }
 ?>

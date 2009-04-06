@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: dbo_sqlite.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_sqlite.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * DboSqlite test
+ * DboSqliteTest file
  *
  * PHP versions 4 and 5
  *
@@ -17,17 +17,16 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 App::import('Core', array('Model', 'DataSource', 'DboSource', 'DboSqlite'));
-
 /**
- * Short description for class.
+ * DboSqliteTestDb class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class DboSqliteTestDb extends DboSqlite {
@@ -60,9 +59,9 @@ class DboSqliteTestDb extends DboSqlite {
 	}
 }
 /**
- * The test class for the DboPostgres
+ * DboSqliteTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboSqliteTest extends CakeTestCase {
@@ -83,14 +82,14 @@ class DboSqliteTest extends CakeTestCase {
 /**
  * Actual DB connection used in testing
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $db = null;
 /**
  * Simulated DB connection used in testing
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $db2 = null;
@@ -150,7 +149,7 @@ class DboSqliteTest extends CakeTestCase {
  *
  * @access public
  * @return void
- */	
+ */
 	function testIndex() {
 		$name = $this->db->fullTableName('with_a_key');
 		$this->db->query('CREATE TABLE ' . $name . ' ("id" int(11) PRIMARY KEY, "bool" int(1), "small_char" varchar(50), "description" varchar(40) );');
@@ -160,12 +159,12 @@ class DboSqliteTest extends CakeTestCase {
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'pointless_bool' => array('column' => 'bool', 'unique' => 0),
 			'char_index' => array('column' => 'small_char', 'unique' => 1),
-			
+
 		);
 		$result = $this->db->index($name);
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
-		
+
 		$this->db->query('CREATE TABLE ' . $name . ' ("id" int(11) PRIMARY KEY, "bool" int(1), "small_char" varchar(50), "description" varchar(40) );');
 		$this->db->query('CREATE UNIQUE INDEX multi_col ON ' . $name . '("small_char", "bool")');
 		$expected = array(
@@ -176,7 +175,6 @@ class DboSqliteTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 	}
-
 /**
  * Tests that cached table descriptions are saved under the sanitized key name
  *
@@ -199,7 +197,7 @@ class DboSqliteTest extends CakeTestCase {
 		$db->cacheSources = false;
 
 		$fileName = '_' . preg_replace('/[^A-Za-z0-9_\-+]/', '_', TMP . $dbName) . '_list';
-		
+
 		$result = Cache::read($fileName, '_cake_model_');
 		$this->assertEqual($result, array('test_list'));
 
@@ -207,5 +205,4 @@ class DboSqliteTest extends CakeTestCase {
 		Configure::write('Cache.disable', true);
 	}
 }
-
 ?>

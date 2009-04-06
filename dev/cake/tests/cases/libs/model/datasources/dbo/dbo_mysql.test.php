@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: dbo_mysql.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_mysql.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * DboMysql test
+ * DboMysqlTest file
  *
  * PHP versions 4 and 5
  *
@@ -17,17 +17,18 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 App::import('Core', array('Model', 'DataSource', 'DboSource', 'DboMysql'));
 
+Mock::generatePartial('DboMysql', 'QueryMockDboMysql', array('query'));
 /**
- * Short description for class.
+ * DboMysqlTestDb class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class DboMysqlTestDb extends DboMysql {
@@ -70,9 +71,9 @@ class DboMysqlTestDb extends DboMysql {
 	}
 }
 /**
- * Short description for class.
+ * MysqlTestModel class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class MysqlTestModel extends Model {
@@ -146,16 +147,16 @@ class MysqlTestModel extends Model {
 	}
 }
 /**
- * The test class for the DboMysql
+ * DboMysqlTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboMysqlTest extends CakeTestCase {
 /**
  * The Dbo instance to be tested
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $Db = null;
@@ -362,6 +363,99 @@ class DboMysqlTest extends CakeTestCase {
 		$this->db->query('DROP TABLE ' . $name);
 	}
 /**
+ * MySQL 4.x returns index data in a different format,
+ * Using a mock ensure that MySQL 4.x output is properly parsed.
+ *
+ * @return void
+ **/
+	function testIndexOnMySQL4Output() {
+		$name = $this->db->fullTableName('simple');
+
+		$mockDbo =& new QueryMockDboMysql($this);
+		$columnData = array(
+			array('0' => array(
+				'Table' => 'with_compound_keys',
+				'Non_unique' => '0',
+				'Key_name' => 'PRIMARY',
+				'Seq_in_index' => '1',
+				'Column_name' => 'id',
+				'Collation' => 'A',
+				'Cardinality' => '0',
+				'Sub_part' => NULL,
+				'Packed' => NULL,
+				'Null' => '',
+				'Index_type' => 'BTREE',
+				'Comment' => ''
+			)),
+			array('0' => array(
+				'Table' => 'with_compound_keys',
+				'Non_unique' => '1',
+				'Key_name' => 'pointless_bool',
+				'Seq_in_index' => '1',
+				'Column_name' => 'bool',
+				'Collation' => 'A',
+				'Cardinality' => NULL,
+				'Sub_part' => NULL,
+				'Packed' => NULL,
+				'Null' => 'YES',
+				'Index_type' => 'BTREE',
+				'Comment' => ''
+			)),
+			array('0' => array(
+				'Table' => 'with_compound_keys',
+				'Non_unique' => '1',
+				'Key_name' => 'pointless_small_int',
+				'Seq_in_index' => '1',
+				'Column_name' => 'small_int',
+				'Collation' => 'A',
+				'Cardinality' => NULL,
+				'Sub_part' => NULL,
+				'Packed' => NULL,
+				'Null' => 'YES',
+				'Index_type' => 'BTREE',
+				'Comment' => ''
+			)),
+			array('0' => array(
+				'Table' => 'with_compound_keys',
+				'Non_unique' => '1',
+				'Key_name' => 'one_way',
+				'Seq_in_index' => '1',
+				'Column_name' => 'bool',
+				'Collation' => 'A',
+				'Cardinality' => NULL,
+				'Sub_part' => NULL,
+				'Packed' => NULL,
+				'Null' => 'YES',
+				'Index_type' => 'BTREE',
+				'Comment' => ''
+			)),
+			array('0' => array(
+				'Table' => 'with_compound_keys',
+				'Non_unique' => '1',
+				'Key_name' => 'one_way',
+				'Seq_in_index' => '2',
+				'Column_name' => 'small_int',
+				'Collation' => 'A',
+				'Cardinality' => NULL,
+				'Sub_part' => NULL,
+				'Packed' => NULL,
+				'Null' => 'YES',
+				'Index_type' => 'BTREE',
+				'Comment' => ''
+			))
+		);
+		$mockDbo->setReturnValue('query', $columnData, array('SHOW INDEX FROM ' . $name));
+
+		$result = $mockDbo->index($name, false);
+		$expected = array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1),
+			'pointless_bool' => array('column' => 'bool', 'unique' => 0),
+			'pointless_small_int' => array('column' => 'small_int', 'unique' => 0),
+			'one_way' => array('column' => array('bool', 'small_int'), 'unique' => 0),
+		);
+		$this->assertEqual($result, $expected);
+	}
+/**
  * testColumn method
  *
  * @return void
@@ -410,7 +504,7 @@ class DboMysqlTest extends CakeTestCase {
 	}
 /**
  * testAlterSchemaIndexes method
- * 
+ *
  * @access public
  * @return void
  */
@@ -444,10 +538,10 @@ class DboMysqlTest extends CakeTestCase {
 					'PRIMARY' => array('column' => 'id', 'unique' => 1))
 		)));
 		$this->db->query($this->db->alterSchema($schema2->compare($schema1)));
-		
+
 		$indexes = $this->db->index('altertest');
 		$this->assertEqual($schema2->tables['altertest']['indexes'], $indexes);
-		
+
 		// Change three indexes, delete one and add another one
 		$schema3 =& new CakeSchema(array(
 			'name' => 'AlterTest3',
@@ -458,7 +552,7 @@ class DboMysqlTest extends CakeTestCase {
 				'group1' => array('type' => 'integer', 'null' => true),
 				'group2' => array('type' => 'integer', 'null' => true),
 				'indexes' => array(
-					'name_idx' => array('column' => 'name', 'unique' => 1), 
+					'name_idx' => array('column' => 'name', 'unique' => 1),
 					'group_idx' => array('column' => 'group2', 'unique' => 0),
 					'compound_idx' => array('column' => array('group2', 'group1'), 'unique' => 0),
 					'id_name_idx' => array('column' => array('id', 'name'), 'unique' => 0))
@@ -481,5 +575,4 @@ class DboMysqlTest extends CakeTestCase {
 		$this->db->query($this->db->dropSchema($schema1));
 	}
 }
-
 ?>

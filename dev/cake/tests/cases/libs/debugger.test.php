@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: debugger.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: debugger.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * DebuggerTest file
  *
  * Long description for file
  *
@@ -16,33 +16,34 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.5432
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'Debugger');
 /**
- * DebugggerTestCaseDebuggger
+ * DebugggerTestCaseDebuggger class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
-class DebuggerTestCaseDebugger extends Debugger { 
-
+class DebuggerTestCaseDebugger extends Debugger {
 }
 /**
- * Debugger Test Case.
+ * DebuggerTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
 class DebuggerTest extends CakeTestCase {
-
-//do not move code below or it change line numbers which are used in the tests
+// !!!
+// !!! Be careful with changing code below as it may
+// !!! change line numbers which are used in the tests
+// !!!
 /**
  * setUp method
  *
@@ -60,6 +61,15 @@ class DebuggerTest extends CakeTestCase {
 		}
 	}
 /**
+ * tearDown method
+ *
+ * @access public
+ * @return void
+ */
+	function tearDown() {
+		Configure::write('log', true);
+	}
+/**
  * testDocRef method
  *
  * @access public
@@ -71,18 +81,18 @@ class DebuggerTest extends CakeTestCase {
 		$debugger = new Debugger();
 		$this->assertEqual(ini_get('docref_root'), 'http://php.net/');
 	}
-	
 /**
  * test Excerpt writing
  *
+ * @access public
  * @return void
- **/
+ */
 	function testExcerpt() {
 		$return = Debugger::excerpt(__FILE__, 2, 2);
 		$this->assertTrue(is_array($return));
 		$this->assertEqual(count($return), 4);
 		$this->assertPattern('#/*&nbsp;SVN&nbsp;FILE:&nbsp;\$Id:&nbsp;debugger.test.php#', $return[1]);
-		
+
 		$return = Debugger::excerpt('[internal]', 2, 2);
 		$this->assertTrue(empty($return));
 	}
@@ -247,34 +257,24 @@ class DebuggerTest extends CakeTestCase {
 		$expected = "<pre>array(\n\t\"People\" => array()\n)</pre>";
 		$this->assertEqual($expected, $result);
 	}
-	
 /**
  * test getInstance.
- *
- * @return void
- **/
-	function testGetInstance() {
-		$result = Debugger::getInstance();
-		$this->assertIsA($result, 'Debugger');
-		
-		$result = Debugger::getInstance('DebuggerTestCaseDebugger');
-		$this->assertIsA($result, 'DebuggerTestCaseDebugger');
-		
-		$result = Debugger::getInstance();
-		$this->assertIsA($result, 'DebuggerTestCaseDebugger');
-		
-		$result = Debugger::getInstance('Debugger');
-		$this->assertIsA($result, 'Debugger');
-	}
-/**
- * tearDown method
  *
  * @access public
  * @return void
  */
-	function tearDown() {
-		Configure::write('log', true);
-	}
+	function testGetInstance() {
+		$result = Debugger::getInstance();
+		$this->assertIsA($result, 'Debugger');
 
+		$result = Debugger::getInstance('DebuggerTestCaseDebugger');
+		$this->assertIsA($result, 'DebuggerTestCaseDebugger');
+
+		$result = Debugger::getInstance();
+		$this->assertIsA($result, 'DebuggerTestCaseDebugger');
+
+		$result = Debugger::getInstance('Debugger');
+		$this->assertIsA($result, 'Debugger');
+	}
 }
 ?>

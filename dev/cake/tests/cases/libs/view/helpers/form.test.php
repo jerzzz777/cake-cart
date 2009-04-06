@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: form.test.php 8004 2009-01-16 20:15:21Z gwoo $ */
+/* SVN FILE: $Id: form.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * FormHelperTest file
  *
  * Long description for file
  *
@@ -16,12 +16,12 @@
  * @filesource
  * @copyright     Copyright 2006-2008, Cake Software Foundation, Inc.
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision: 8004 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2009-01-16 15:15:21 -0500 (Fri, 16 Jan 2009) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
@@ -127,6 +127,12 @@ class Contact extends CakeTestModel {
  */
 	var $hasAndBelongsToMany = array('ContactTag' => array('with' => 'ContactTagsContact'));
 }
+/**
+ * ContactTagsContact class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.view.helpers
+ */
 class ContactTagsContact extends CakeTestModel {
 /**
  * useTable property
@@ -164,8 +170,13 @@ class ContactTagsContact extends CakeTestModel {
 		$this->_schema = $schema;
 	}
 }
-
-Class ContactNonStandardPk extends Contact {
+/**
+ * ContactNonStandardPk class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.view.helpers
+ */
+class ContactNonStandardPk extends Contact {
 /**
  * primaryKey property
  *
@@ -567,9 +578,9 @@ class TestMail extends CakeTestModel {
 	var $name = 'TestMail';
 }
 /**
- * Short description for class.
+ * FormHelperTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
 class FormHelperTest extends CakeTestCase {
@@ -614,8 +625,27 @@ class FormHelperTest extends CakeTestCase {
 			'minutesRegex' => 'preg:/(?:<option value="([\d]+)">0?\\1<\/option>[\r\n]*)*/',
 			'meridianRegex' => 'preg:/(?:<option value="(am|pm)">\\1<\/option>[\r\n]*)*/',
 		);
-		
+
 		Configure::write('Security.salt', 'foo!');
+	}
+/**
+ * tearDown method
+ *
+ * @access public
+ * @return void
+ */
+	function tearDown() {
+		ClassRegistry::removeObject('view');
+		ClassRegistry::removeObject('Contact');
+		ClassRegistry::removeObject('ContactNonStandardPk');
+		ClassRegistry::removeObject('ContactTag');
+		ClassRegistry::removeObject('OpenidUrl');
+		ClassRegistry::removeObject('UserForm');
+		ClassRegistry::removeObject('ValidateItem');
+		ClassRegistry::removeObject('ValidateUser');
+		ClassRegistry::removeObject('ValidateProfile');
+		unset($this->Form->Html, $this->Form, $this->Controller, $this->View);
+		Configure::write('Security.salt', $this->oldSalt);
 	}
 /**
  * testFormCreateWithSecurity method
@@ -723,7 +753,6 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * Tests correct generation of text fields for double and float fields
  *
@@ -786,14 +815,13 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * testFormSecurityMultipleSubmitButtons
  *
  * test form submit generation and ensure that _Token is only created on end()
  *
  * @return void
- **/
+ */
 	function testFormSecurityMultipleSubmitButtons() {
 		$key = 'testKey';
 		$this->Form->params['_Token']['key'] = $key;
@@ -828,7 +856,6 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * testFormSecurityMultipleInputFields method
  *
@@ -962,7 +989,6 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * testFormSecuredInput method
  *
@@ -1558,7 +1584,7 @@ class FormHelperTest extends CakeTestCase {
 		$this->assertNoPattern('#<option value="12"[^>]*>12</option>#', $result[1]);
 		$this->assertNoPattern('#<option value="50"[^>]*>50</option>#', $result[1]);
 		$this->assertPattern('#<option value="15"[^>]*>15</option>#', $result[1]);
-		
+
 		$result = $this->Form->input('prueba', array(
 			'type' => 'time', 'timeFormat'=> 24 , 'dateFormat'=>'DMY' , 'minYear' => 2008,
 			'maxYear' => date('Y') + 1 ,'interval' => 15
@@ -1568,7 +1594,7 @@ class FormHelperTest extends CakeTestCase {
 		$this->assertNoPattern('#<option value="50"[^>]*>50</option>#', $result[1]);
 		$this->assertPattern('#<option value="15"[^>]*>15</option>#', $result[1]);
 		$this->assertPattern('#<option value="30"[^>]*>30</option>#', $result[1]);
-		
+
 		$result = $this->Form->input('prueba', array(
 			'type' => 'datetime', 'timeFormat'=> 24 , 'dateFormat'=>'DMY' , 'minYear' => 2008,
 			'maxYear' => date('Y') + 1 ,'interval' => 15
@@ -2631,7 +2657,6 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * testNestedSelect method
  *
@@ -2694,7 +2719,6 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
 /**
  * testSelectMultiple method
  *
@@ -4181,6 +4205,15 @@ class FormHelperTest extends CakeTestCase {
 			'/textarea',
 		);
 		$this->assertTags($result, $expected);
+
+		$this->Form->data = array('Model' => array('field' => 'some <strong>test</strong> data with <a href="#">HTML</a> chars'));
+		$result = $this->Form->textarea('Model.field', array('escape' => false));
+		$expected = array(
+			'textarea' => array('name' => 'data[Model][field]', 'id' => 'ModelField'),
+			'some <strong>test</strong> data with <a href="#">HTML</a> chars',
+			'/textarea',
+		);
+		$this->assertTags($result, $expected);
 	}
 /**
  * testTextAreaWithStupidCharacters method
@@ -5062,7 +5095,12 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-
+/**
+ * testBrokenness method
+ *
+ * @access public
+ * @return void
+ */
 	function testBrokenness() {
 		/*
 		 * #4 This test has two parents and four children. By default (as of r7117) both
@@ -5145,25 +5183,5 @@ class FormHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
-/**
- * tearDown method
- *
- * @access public
- * @return void
- */
-	function tearDown() {
-		ClassRegistry::removeObject('view');
-		ClassRegistry::removeObject('Contact');
-		ClassRegistry::removeObject('ContactNonStandardPk');
-		ClassRegistry::removeObject('ContactTag');
-		ClassRegistry::removeObject('OpenidUrl');
-		ClassRegistry::removeObject('UserForm');
-		ClassRegistry::removeObject('ValidateItem');
-		ClassRegistry::removeObject('ValidateUser');
-		ClassRegistry::removeObject('ValidateProfile');
-		unset($this->Form->Html, $this->Form, $this->Controller, $this->View);
-		Configure::write('Security.salt', $this->oldSalt);
-	}
 }
-
 ?>

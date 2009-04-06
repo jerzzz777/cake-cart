@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: session.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: session.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * SessionHelperTest file
  *
  * Long description for file
  *
@@ -16,12 +16,12 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
@@ -30,9 +30,9 @@ if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 App::import('Core', array('Helper', 'AppHelper', 'Controller', 'View'));
 App::import('Helper', array('Session'));
 /**
- * Short description for class.
+ * SessionHelperTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
 class SessionHelperTest extends CakeTestCase {
@@ -224,5 +224,4 @@ class SessionHelperTest extends CakeTestCase {
 		//$this->assertFalse($this->Session->valid());
 	}
 }
-
 ?>

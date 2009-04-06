@@ -1,9 +1,9 @@
 <?php
-/* SVN FILE: $Id: email.test.php 8004 2009-01-16 20:15:21Z gwoo $ */
+/* SVN FILE: $Id: email.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Series of tests for email component.
+ * EmailComponentTest file
  *
- * Long description for file
+ * Series of tests for email component.
  *
  * PHP versions 4 and 5
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.tests.cases.libs.controller.components
  * @since         CakePHP(tm) v 1.2.0.5347
- * @version       $Revision: 8004 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2009-01-16 15:15:21 -0500 (Fri, 16 Jan 2009) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 Configure::write('App.encoding', 'UTF-8');
@@ -54,7 +54,12 @@ class EmailTestController extends Controller {
  * @access public
  */
 	var $components = array('Email');
-
+/**
+ * pageTitle property
+ *
+ * @var string
+ * @access public
+ */
 	var $pageTitle = 'EmailTest';
 }
 /**
@@ -63,7 +68,14 @@ class EmailTestController extends Controller {
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
  */
-class EmailTest extends CakeTestCase {
+class EmailComponentTest extends CakeTestCase {
+/**
+ * Controller property
+ *
+ * @var EmailTestController
+ * @access public
+ */
+	var $Controller;
 /**
  * name property
  *
@@ -369,7 +381,12 @@ TEXTBLOC;
 		$expected = "Previous content\n--alt-\n text/html; utf-8\n 7bit\n\n<p>My own html content</p>";
 		$this->assertEqual($result, $expected);
 	}
-
+/**
+ * testMultibyte method
+ *
+ * @access public
+ * @return void
+ */
 	function testMultibyte() {
 		$this->Controller->Email->reset();
 		$this->Controller->Email->to = 'postmaster@localhost';
@@ -396,10 +413,15 @@ TEXTBLOC;
 		preg_match('/Subject: (.*)Header:/s', $this->Controller->Session->read('Message.email.message'), $matches);
 		$this->assertEqual(trim($matches[1]), $subject);
 	}
-
+/**
+ * osFix method
+ *
+ * @param string $string
+ * @access private
+ * @return string
+ */
 	function __osFix($string) {
 		return str_replace(array("\r\n", "\r"), "\n", $string);
 	}
 }
-
 ?>
