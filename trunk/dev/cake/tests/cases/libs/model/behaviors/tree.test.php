@@ -1,9 +1,9 @@
 <?php
-/* SVN FILE: $Id: tree.test.php 8004 2009-01-16 20:15:21Z gwoo $ */
+/* SVN FILE: $Id: tree.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * TreeBehaviorTest file
  *
- * Long description for file
+ * Holds several Test Cases
  *
  * PHP versions 4 and 5
  *
@@ -16,23 +16,23 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  * @since         CakePHP(tm) v 1.2.0.5330
- * @version       $Revision: 8004 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2009-01-16 15:15:21 -0500 (Fri, 16 Jan 2009) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', array('AppModel', 'Model'));
 require_once(dirname(dirname(__FILE__)) . DS . 'models.php');
 /**
- * NumberTreeCase class
+ * NumberTreeTest class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
-class NumberTreeCase extends CakeTestCase {
+class NumberTreeTest extends CakeTestCase {
 /**
  * settings property
  *
@@ -338,6 +338,25 @@ class NumberTreeCase extends CakeTestCase {
 		$validTree = $this->Tree->verify();
 		$this->assertIdentical($validTree, true);
 	}
+/**
+ * testAddNotIndexedByModel method
+ *
+ * @access public
+ * @return void
+ */
+	function testAddNotIndexedByModel() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$this->Tree->save(array('name' => 'testAddNotIndexed', $parentField => null));
+		$result = $this->Tree->find(null, array('name', $parentField), $modelClass . '.' . $leftField . ' desc');
+		$expected = array($modelClass => array('name' => 'testAddNotIndexed', $parentField => null));
+		$this->assertEqual($result, $expected);
+
+		$validTree = $this->Tree->verify();
+		$this->assertIdentical($validTree, true);
+}
 /**
  * testMovePromote method
  *
@@ -1186,12 +1205,12 @@ class NumberTreeCase extends CakeTestCase {
 	}
 }
 /**
- * ScopedTreeCase class
+ * ScopedTreeTest class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
-class ScopedTreeCase extends NumberTreeCase {
+class ScopedTreeTest extends NumberTreeTest {
 /**
  * settings property
  *
@@ -1416,12 +1435,12 @@ class ScopedTreeCase extends NumberTreeCase {
 	}
 }
 /**
- * AfterTreeCase class
+ * AfterTreeTest class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
-class AfterTreeCase extends NumberTreeCase {
+class AfterTreeTest extends NumberTreeTest {
 /**
  * settings property
  *
@@ -1460,12 +1479,12 @@ class AfterTreeCase extends NumberTreeCase {
 	}
 }
 /**
- * UnconventionalTreeCase class
+ * UnconventionalTreeTest class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
-class UnconventionalTreeCase extends NumberTreeCase {
+class UnconventionalTreeTest extends NumberTreeTest {
 /**
  * settings property
  *
@@ -1487,12 +1506,12 @@ class UnconventionalTreeCase extends NumberTreeCase {
 	var $fixtures = array('core.unconventional_tree');
 }
 /**
- * UuidTreeCase class
+ * UuidTreeTest class
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
-class UuidTreeCase extends NumberTreeCase {
+class UuidTreeTest extends NumberTreeTest {
 /**
  * settings property
  *

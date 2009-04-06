@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: memcache.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: memcache.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * MemcacheEngineTest file
  *
  * Long description for file
  *
@@ -16,20 +16,20 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.cache
  * @since         CakePHP(tm) v 1.2.0.5434
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!class_exists('Cache')) {
 	require LIBS . 'cache.php';
 }/**
- * Short description for class.
+ * MemcacheEngineTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.cache
  */
 /**
@@ -129,7 +129,6 @@ class MemcacheEngineTest extends CakeTestCase {
 		$result = $Cache->_Engine['Memcache']->connect('127.0.0.1');
 		$this->assertTrue($result);
 	}
-
 /**
  * testReadAndWriteCache method
  *
@@ -137,17 +136,21 @@ class MemcacheEngineTest extends CakeTestCase {
  * @return void
  */
 	function testReadAndWriteCache() {
+		Cache::set(array('duration' => 1));
+
 		$result = Cache::read('test');
 		$expecting = '';
 		$this->assertEqual($result, $expecting);
 
 		$data = 'this is a test of the emergency broadcasting system';
-		$result = Cache::write('test', $data, 1);
+		$result = Cache::write('test', $data);
 		$this->assertTrue($result);
 
 		$result = Cache::read('test');
 		$expecting = $data;
 		$this->assertEqual($result, $expecting);
+
+		Cache::delete('test');
 	}
 /**
  * testExpiry method
@@ -156,38 +159,47 @@ class MemcacheEngineTest extends CakeTestCase {
  * @return void
  */
 	function testExpiry() {
-		sleep(2);
+		Cache::set(array('duration' => 1));
+
 		$result = Cache::read('test');
-		$this->assertFalse($result);
-
-		$data = 'this is a test of the emergency broadcasting system';
-		$result = Cache::write('other_test', $data, 1);
-		$this->assertTrue($result);
-
-		sleep(2);
-		$result = Cache::read('other_test');
-		$this->assertFalse($result);
-
-		$data = 'this is a test of the emergency broadcasting system';
-		$result = Cache::write('other_test', $data, "+1 second");
-		$this->assertTrue($result);
-
-		sleep(2);
-		$result = Cache::read('other_test');
 		$this->assertFalse($result);
 
 		$data = 'this is a test of the emergency broadcasting system';
 		$result = Cache::write('other_test', $data);
 		$this->assertTrue($result);
 
+		sleep(2);
 		$result = Cache::read('other_test');
-		$this->assertEqual($result, $data);
+		$this->assertFalse($result);
+
+		Cache::set(array('duration' =>  "+1 second"));
+
+		$data = 'this is a test of the emergency broadcasting system';
+		$result = Cache::write('other_test', $data);
+		$this->assertTrue($result);
+
+		sleep(2);
+		$result = Cache::read('other_test');
+		$this->assertFalse($result);
 
 		Cache::engine('Memcache', array('duration' => '+1 second'));
 		sleep(2);
 
 		$result = Cache::read('other_test');
 		$this->assertFalse($result);
+
+		Cache::engine('Memcache', array('duration' => '+31 day'));
+		$data = 'this is a test of the emergency broadcasting system';
+		$result = Cache::write('long_expiry_test', $data);
+		$this->assertTrue($result);
+
+		sleep(2);
+		$result = Cache::read('long_expiry_test');
+		$expecting = $data;
+		$this->assertEqual($result, $expecting);
+
+		$result = Cache::read('long_expiry_test');
+		$this->assertTrue($result);
 
 		Cache::engine('Memcache', array('duration' => 3600));
 	}

@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: view.test.php 7961 2008-12-25 23:21:36Z gwoo $ */
+/* SVN FILE: $Id: view.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * ViewTest file
  *
  * Long description for file
  *
@@ -16,15 +16,16 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision: 7961 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-25 18:21:36 -0500 (Thu, 25 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', array('View', 'Controller'));
+
 if (!class_exists('ErrorHandler')) {
 	App::import('Core', array('Error'));
 }
@@ -189,13 +190,11 @@ class TestAfterHelper extends Helper {
 		$View->output .= 'modified in the afterlife';
 	}
 }
-
 Mock::generate('Helper', 'CallbackMockHelper');
-
 /**
- * Short description for class.
+ * ViewTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs
  */
 class ViewTest extends CakeTestCase {
@@ -212,6 +211,17 @@ class ViewTest extends CakeTestCase {
 		$this->PostsController->viewPath = 'posts';
 		$this->PostsController->index();
 		$this->View = new View($this->PostsController);
+	}
+/**
+ * tearDown method
+ *
+ * @access public
+ * @return void
+ */
+	function tearDown() {
+		unset($this->View);
+		unset($this->PostsController);
+		unset($this->Controller);
 	}
 /**
  * testPluginGetTemplate method
@@ -735,17 +745,6 @@ class ViewTest extends CakeTestCase {
 
 		$this->assertPattern("/<meta http-equiv=\"Content-Type\" content=\"text\/html; charset=utf-8\" \/><title>/", $result);
 		$this->assertPattern("/<div id=\"content\">posts index<\/div>/", $result);
-	}
-/**
- * tearDown method
- *
- * @access public
- * @return void
- */
-	function tearDown() {
-		unset($this->View);
-		unset($this->PostsController);
-		unset($this->Controller);
 	}
 }
 ?>

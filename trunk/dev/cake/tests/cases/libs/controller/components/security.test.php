@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: security.test.php 7961 2008-12-25 23:21:36Z gwoo $ */
+/* SVN FILE: $Id: security.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for file.
+ * SecurityComponentTest file
  *
  * Long description for file
  *
@@ -16,31 +16,36 @@
  * @filesource
  * @copyright     Copyright 2005-2008, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
  * @since         CakePHP(tm) v 1.2.0.5435
- * @version       $Revision: 7961 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-25 18:21:36 -0500 (Thu, 25 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Component', 'Security');
-
 /**
-* Short description for class.
+* TestSecurityComponent
 *
-* @package       cake.tests
+* @package       cake
 * @subpackage    cake.tests.cases.libs.controller.components
 */
 class TestSecurityComponent extends SecurityComponent {
+/**
+ * validatePost method
+ *
+ * @param Controller $controller
+ * @return unknown
+ */
 	function validatePost(&$controller) {
 		return $this->_validatePost($controller);
 	}
 }
 /**
-* Short description for class.
+* SecurityTestController
 *
-* @package       cake.tests
+* @package       cake
 * @subpackage    cake.tests.cases.libs.controller.components
 */
 class SecurityTestController extends Controller {
@@ -104,14 +109,27 @@ class SecurityTestController extends Controller {
 		$this->testHeaders[] = $status;
 	}
 }
-
 /**
- * Short description for class.
+ * SecurityComponentTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
  */
 class SecurityComponentTest extends CakeTestCase {
+/**
+ * Controller property
+ *
+ * @var SecurityTestController
+ * @access public
+ */
+	var $Controller;
+/**
+ * oldSalt property
+ *
+ * @var string
+ * @access public
+ */
+	var $oldSalt;
 /**
  * setUp method
  *
@@ -128,7 +146,7 @@ class SecurityComponentTest extends CakeTestCase {
 		Configure::write('Security.salt', 'foo!');
 	}
 /**
- * Tear-down method.  Resets environment state.
+ * Tear-down method. Resets environment state.
  *
  * @access public
  * @return void
@@ -139,7 +157,6 @@ class SecurityComponentTest extends CakeTestCase {
 		unset($this->Controller);
 		Configure::write('Security.salt', $this->oldSalt);
 	}
-
 /**
  * testStartup method
  *
@@ -584,7 +601,6 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
-
 /**
  * test ValidatePost with multiple select elements.
  *
@@ -776,7 +792,6 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
-
 /**
  * testValidateHasManyRecordsPass method
  *
@@ -1079,5 +1094,4 @@ DIGEST;
 		$this->assertEqual(current($this->Controller->testHeaders), $expected);
 	}
 }
-
 ?>

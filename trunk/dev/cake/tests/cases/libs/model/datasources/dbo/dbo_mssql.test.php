@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: dbo_mssql.test.php 8004 2009-01-16 20:15:21Z gwoo $ */
+/* SVN FILE: $Id: dbo_mssql.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * DboMssql test
+ * DboMssqlTest file
  *
  * PHP versions 4 and 5
  *
@@ -17,9 +17,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 8004 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2009-01-16 15:15:21 -0500 (Fri, 16 Jan 2009) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
@@ -29,7 +29,6 @@ require_once LIBS.'model'.DS.'model.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'datasource.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'dbo_source.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'dbo'.DS.'dbo_mssql.php';
-
 /**
  * DboMssqlTestDb class
  *
@@ -37,14 +36,32 @@ require_once LIBS.'model'.DS.'datasources'.DS.'dbo'.DS.'dbo_mssql.php';
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboMssqlTestDb extends DboMssql {
-
-	function __construct() {}
-
+/**
+ * Contructor
+ *
+ * @return void
+ * @access public
+ */
+	function __construct() {
+	}
+/**
+ * connect method
+ *
+ * @return boolean
+ * @access public
+ */
 	function connect() {
 		$this->connected = true;
 		return true;
 	}
-	function lastError() {}
+/**
+ * lastError method
+ *
+ * @return void
+ * @access public
+ */
+	function lastError() {
+	}
 /**
  * simulated property
  *
@@ -54,7 +71,7 @@ class DboMssqlTestDb extends DboMssql {
 	var $simulated = array();
 /**
  * fetchAllResultsStack
- * 
+ *
  * @var array
  * @access public
  */
@@ -72,8 +89,8 @@ class DboMssqlTestDb extends DboMssql {
 	}
 /**
  * fetchAll method
- * 
- * @param mixed $sql 
+ *
+ * @param mixed $sql
  * @access protected
  * @return void
  */
@@ -82,8 +99,8 @@ class DboMssqlTestDb extends DboMssql {
 	}
 /**
  * fetchAll method
- * 
- * @param mixed $sql 
+ *
+ * @param mixed $sql
  * @access protected
  * @return void
  */
@@ -104,11 +121,10 @@ class DboMssqlTestDb extends DboMssql {
 		return $this->simulated[count($this->simulated) - 1];
 	}
 }
-
 /**
- * Short description for class.
+ * MssqlTestModel class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class MssqlTestModel extends Model {
@@ -183,16 +199,16 @@ class MssqlTestModel extends Model {
 	}
 }
 /**
- * The test class for the DboMssql
+ * DboMssqlTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboMssqlTest extends CakeTestCase {
 /**
  * The Dbo instance to be tested
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $db = null;
@@ -215,6 +231,16 @@ class DboMssqlTest extends CakeTestCase {
 		$this->db = new DboMssqlTestDb($db->config);
 		$this->model = new MssqlTestModel();
 	}
+/**
+ * tearDown method
+ *
+ * @access public
+ * @return void
+ */
+	function tearDown() {
+		unset($this->model);
+	}
+
 /**
  * testQuoting method
  *
@@ -284,7 +310,7 @@ class DboMssqlTest extends CakeTestCase {
 	}
 /**
  * testDescribe method
- * 
+ *
  * @access public
  * @return void
  */
@@ -314,7 +340,12 @@ class DboMssqlTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
-
+/**
+ * testUpdateAllSyntax method
+ *
+ * @return void
+ * @access public
+ */
 	function testUpdateAllSyntax() {
 		$model = ClassRegistry::init('MssqlTestModel');
 		$fields = array('MssqlTestModel.client_id' => '[MssqlTestModel].[client_id] + 1');
@@ -325,16 +356,6 @@ class DboMssqlTest extends CakeTestCase {
 		$this->assertNoPattern('/MssqlTestModel/', $result);
 		$this->assertPattern('/^UPDATE \[mssql_test_models\]/', $result);
 		$this->assertPattern('/SET \[client_id\] = \[client_id\] \+ 1/', $result);
-	}
-
-/**
- * tearDown method
- *
- * @access public
- * @return void
- */
-	function tearDown() {
-		unset($this->model);
 	}
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
-/* SVN FILE: $Id: dbo_adodb.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_adodb.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * AdoDB layer for DBO.
+ * DboAdodbTest file
  *
- * Long description for file
+ * AdoDB layer for DBO
  *
  * PHP versions 4 and 5
  *
@@ -19,21 +19,19 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources.dbo
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Rev: 7945 $
+ * @version       $Rev: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-
 require_once LIBS.'model'.DS.'model.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'datasource.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'dbo_source.php';
 require_once LIBS.'model'.DS.'datasources'.DS.'dbo'.DS.'dbo_adodb.php';
-
 /**
- * Short description for class.
+ * DboAdoTestDb
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class DboAdoTestDb extends DboAdodb {
@@ -75,11 +73,10 @@ class DboAdoTestDb extends DboAdodb {
 		return $this->simulated[count($this->simulated) - 1];
 	}
 }
-
 /**
- * Short description for class.
+ * AdodbTestModel
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class AdodbTestModel extends CakeTestModel {
@@ -152,7 +149,6 @@ class AdodbTestModel extends CakeTestModel {
 		);
 	}
 }
-
 if (!class_exists('Article')) {
 /**
  * Article class
@@ -171,29 +167,27 @@ if (!class_exists('Article')) {
 
 	}
 }
-
 /**
- * The test class for the DboAdobd
+ * DboAdodbTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboAdodbTest extends CakeTestCase {
 /**
  * The Dbo instance to be tested
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $db = null;
-
 /**
- * undocumented class variable
+ * fixtures property
  *
  * @var string
+ * @access public
  **/
 	var $fixtures = array('core.article');
-
 /**
  * Skip if cannot connect to AdoDb
  *
@@ -280,6 +274,5 @@ class DboAdodbTest extends CakeTestCase {
 	function testColumns() {
 
 	}
-
 }
 ?>

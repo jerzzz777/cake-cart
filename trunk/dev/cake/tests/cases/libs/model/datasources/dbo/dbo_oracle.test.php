@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: dbo_oracle.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_oracle.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * DboOracle test
+ * DboOracleTest file
  *
  * PHP versions 4 and 5
  *
@@ -17,18 +17,16 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
 }
 require_once LIBS . 'model' . DS . 'datasources' . DS . 'dbo_source.php';
 require_once LIBS . 'model' . DS . 'datasources' . DS . 'dbo' . DS . 'dbo_oracle.php';
-
 /**
  * DboOracleTest class
  *
@@ -39,7 +37,7 @@ class DboOracleTest extends CakeTestCase {
 /**
  * fixtures property
  */
-	var $fixtures = array('core.oracle_user');	
+	var $fixtures = array('core.oracle_user');
 /**
  * setup method
  *
@@ -99,7 +97,6 @@ class DboOracleTest extends CakeTestCase {
 		$this->db->config['password'] = $old_pw;
 		$this->db->connect();
 	}
-
 /**
  * testName method
  *
@@ -131,10 +128,5 @@ class DboOracleTest extends CakeTestCase {
 		$this->assertEqual($e, $r);
 
 	}
-	
-	
-	
-	
 }
-
 ?>

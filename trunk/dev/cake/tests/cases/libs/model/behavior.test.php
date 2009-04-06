@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: behavior.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: behavior.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * Short description for behavior.test.php
+ * BehaviorTest file
  *
  * Long description for behavior.test.php
  *
@@ -18,18 +18,17 @@
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
  * @since         1.2
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 App::import('Model', 'AppModel');
-
 require_once dirname(__FILE__) . DS . 'models.php';
 /**
- * Short description for class.
+ * TestBehavior class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model
  */
 class TestBehavior extends ModelBehavior {
@@ -329,7 +328,6 @@ class TestBehavior extends ModelBehavior {
  * @subpackage    cake.tests.cases.libs.model
  */
 class Test2Behavior extends TestBehavior{
-
 }
 /**
  * Test3Behavior class
@@ -338,7 +336,6 @@ class Test2Behavior extends TestBehavior{
  * @subpackage    cake.tests.cases.libs.model
  */
 class Test3Behavior extends TestBehavior{
-
 }
 /**
  * BehaviorTest class
@@ -354,6 +351,15 @@ class BehaviorTest extends CakeTestCase {
  * @access public
  */
 	var $fixtures = array('core.apple', 'core.sample');
+/**
+ * tearDown method
+ *
+ * @access public
+ * @return void
+ */
+	function tearDown() {
+		ClassRegistry::flush();
+	}
 /**
  * testBehaviorBinding method
  *
@@ -375,8 +381,11 @@ class BehaviorTest extends CakeTestCase {
 		$this->assertIdentical($Apple->Sample->Behaviors->attached(), array('Test'));
 		$this->assertEqual($Apple->Sample->Behaviors->Test->settings['Sample'], array('beforeFind' => 'on', 'afterFind' => 'off', 'key2' => 'value2'));
 
-		$this->assertEqual(array_keys($Apple->Behaviors->Test->settings), array('Apple'));
-		$this->assertEqual(array_keys($Apple->Sample->Behaviors->Test->settings), array('Sample'));
+		$this->assertEqual(array_keys($Apple->Behaviors->Test->settings), array('Apple', 'Sample'));
+		$this->assertIdentical(
+			$Apple->Sample->Behaviors->Test->settings,
+			$Apple->Behaviors->Test->settings
+		);
 		$this->assertNotIdentical($Apple->Behaviors->Test->settings['Apple'], $Apple->Sample->Behaviors->Test->settings['Sample']);
 
 		$Apple->Behaviors->attach('Test', array('key2' => 'value2', 'key3' => 'value3', 'beforeFind' => 'off'));
@@ -398,14 +407,20 @@ class BehaviorTest extends CakeTestCase {
 		$this->assertFalse($Apple->Behaviors->attach('NoSuchBehavior'));
 
 		$Apple->Behaviors->attach('Plugin.Test', array('key' => 'new value'));
-		$this->assertEqual($Apple->Behaviors->Test->settings['Apple'], array('beforeFind' => 'off', 'afterFind' => 'off', 'key' => 'new value', 'key2' => 'value2', 'key3' => 'value3'));
+		$expected = array(
+			'beforeFind' => 'off', 'afterFind' => 'off', 'key' => 'new value',
+			'key2' => 'value2', 'key3' => 'value3'
+		);
+		$this->assertEqual($Apple->Behaviors->Test->settings['Apple'], $expected);
 
 		$current = $Apple->Behaviors->Test->settings['Apple'];
 		$expected = array_merge($current, array('mangle' => 'trigger mangled'));
 		$Apple->Behaviors->attach('Test', array('mangle' => 'trigger'));
 		$this->assertEqual($Apple->Behaviors->Test->settings['Apple'], $expected);
+
 		$Apple->Behaviors->attach('Test');
 		$expected = array_merge($current, array('mangle' => 'trigger mangled mangled'));
+
 		$this->assertEqual($Apple->Behaviors->Test->settings['Apple'], $expected);
 		$Apple->Behaviors->attach('Test', array('mangle' => 'trigger'));
 		$expected = array_merge($current, array('mangle' => 'trigger mangled'));
@@ -933,10 +948,10 @@ class BehaviorTest extends CakeTestCase {
 		$expected = array('TestBehavior', 'Test2Behavior');
 		$this->assertIdentical($Apple->beforeTestResult, $expected);
 	}
-	
 /**
  * Test attach and detaching
  *
+ * @access public
  * @return void
  **/
 	function testBehaviorAttachAndDetach() {
@@ -945,19 +960,8 @@ class BehaviorTest extends CakeTestCase {
 		$Sample->Behaviors->init($Sample->alias, $Sample->actsAs);
 		$Sample->Behaviors->attach('Test2');
 		$Sample->Behaviors->detach('Test3');
-		
+
 		$Sample->Behaviors->trigger($Sample, 'beforeTest');
 	}
-	
-/**
- * tearDown method
- *
- * @access public
- * @return void
- */
-	function tearDown() {
-		ClassRegistry::flush();
-	}
 }
-
 ?>

@@ -1,7 +1,7 @@
 <?php
-/* SVN FILE: $Id: dbo_mysqli.test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_mysqli.test.php 8120 2009-03-19 20:25:10Z gwoo $ */
 /**
- * DboMysqli test
+ * DboMysqliTest file
  *
  * PHP versions 4 and 5
  *
@@ -17,21 +17,19 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8120 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 21:16:01 -0500 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-03-19 16:25:10 -0400 (Thu, 19 Mar 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
 }
 App::import('Core', array('Model', 'DataSource', 'DboSource', 'DboMysqli'));
-
 /**
- * Short description for class.
+ * DboMysqliTestDb class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class DboMysqliTestDb extends DboMysqli {
@@ -74,9 +72,9 @@ class DboMysqliTestDb extends DboMysqli {
 	}
 }
 /**
- * Short description for class.
+ * MysqliTestModel class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class MysqliTestModel extends Model {
@@ -150,16 +148,16 @@ class MysqliTestModel extends Model {
 	}
 }
 /**
- * The test class for the DboMysqli
+ * DboMysqliTest class
  *
- * @package       cake.tests
+ * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboMysqliTest extends CakeTestCase {
 /**
  * The Dbo instance to be tested
  *
- * @var object
+ * @var DboSource
  * @access public
  */
 	var $Db = null;
@@ -300,5 +298,4 @@ class DboMysqliTest extends CakeTestCase {
 		$this->assertEqual($result, $expected);
 	}
 }
-
 ?>
