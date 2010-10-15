@@ -26,6 +26,7 @@ class CustomersController extends AppController {
 	}
 
 	function login() {
+            //this would be a login function
 	}
 
 	function logout() {
